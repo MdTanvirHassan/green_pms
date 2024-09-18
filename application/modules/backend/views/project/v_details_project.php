@@ -10,7 +10,7 @@
         white-space: nowrap;
     }
 
-    Department List
+    /* Department List */
     .dropdown i {
         margin-right: 0.5rem;
     }
