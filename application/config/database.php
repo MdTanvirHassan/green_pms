@@ -42,8 +42,8 @@ $active_group = ENVIRONMENT;
 $active_record = TRUE;
 
 $db['development']['hostname'] = 'localhost';
-$db['development']['username'] = 'root';
-$db['development']['password'] = '';
+$db['development']['username'] = 'axiz_green_pms';
+$db['development']['password'] = '4axiz.coM';
 $db['development']['database'] = 'axiz_green_pms';
 $db['development']['dbdriver'] = 'mysqli';
 $db['development']['dbprefix'] = '';
@@ -59,8 +59,8 @@ $db['development']['stricton'] = FALSE;
 
 
 $db['db2']['hostname'] = 'localhost';
-$db['db2']['username'] = 'root';
-$db['db2']['password'] = '';
+$db['db2']['username'] = 'axiz_green_supply_chain';
+$db['db2']['password'] = '4axiz.coM';
 $db['db2']['database'] = 'axiz_green_supply_chain';
 $db['db2']['dbdriver'] = 'mysqli';
 $db['db2']['dbprefix'] = '';
