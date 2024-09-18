@@ -1,0 +1,26 @@
+name: Deploy website on push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v3
+
+    - name: Push files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.4axiz.com
+        username: green_pms@4axiz.com
+        password: ${{ secrets.PASSWORD }}
+        # server-dir: /home/axiz/public_html/aspect/
+        # protocol: ftps
+        # port: 21
+        # retries: 3
