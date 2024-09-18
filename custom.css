@@ -1,0 +1,42 @@
+.pcoded .pcoded-navbar[navbar-theme="theme1"] .nav-user, .pcoded .pcoded-navbar[navbar-theme="theme1"] .pcoded-inner-navbar {
+	background-color: #fff !important;
+	/*background-color: #002060 !important;*/
+        
+}
+.pcoded .pcoded-navbar[navbar-theme="theme1"] .pcoded-item > li > a {
+	color:#000 !important;
+}
+.pcoded[theme-layout="vertical"] .pcoded-navbar[navbar-theme="theme1"][active-item-theme="theme1"] .pcoded-item > li.active > a, .pcoded[theme-layout="vertical"] .pcoded-navbar[navbar-theme="theme1"][active-item-theme="theme1"] .pcoded-item > li.pcoded-trigger > a {
+	background: #fff !important;
+/*	background: #101042 !important;*/
+	color: #000 !important;
+}
+.header-navbar .navbar-wrapper .navbar-logo[logo-theme="theme6"] {
+	/*background: #101042 !important;*/
+	background: #fff !important;
+}
+.tab-icon  a{
+    font-size: 14px !important;
+    padding: 10px 0 !important;
+}
+
+.tab-icon {
+	margin-bottom: 0px !important;
+}
+.card .card-block.tab-icon {
+    
+    padding: 0px !important;
+}
+.table td, .table th {
+	padding: 0.25rem 0.75rem !important;
+}
+#task_status_details table tr td{
+    padding-left: 0px !important;
+}
+
+#task_status_details table tr td div{
+    padding: 0px;
+}
+#task_status_details table tr td .dropdown{
+   text-align: right;
+}

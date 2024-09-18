@@ -1,0 +1,3107 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+ <!--Additional files for the Highslide popup effect--> 
+<script src="https://www.highcharts.com/media/com_demo/js/highslide-full.min.js"></script>
+<script src="https://www.highcharts.com/media/com_demo/js/highslide.config.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="https://www.highcharts.com/media/com_demo/css/highslide.css" />
+
+<script type="text/javascript" src="<?php echo site_url(); ?>js/canvasjs.js"></script>
+
+<style type="text/css">
+
+    .shadow {
+        -webkit-box-shadow: 1.5px 1.5px 4px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+        -moz-box-shadow:    1.5px 1.5px 4px 1px #ccc;  /* Firefox 3.5 - 3.6 */
+        box-shadow:        1.5px 1.5px 4px 1px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+    }
+.department_box{
+	font-size: 18px;
+width: 180px;
+height: 50px;
+align-content: center;
+display: table-cell;
+vertical-align: middle;
+text-align: center !important;
+}
+    #task_tree_details table th{
+        border-top:0px !important;
+        border-bottom:0px !important;
+    }
+    #task_tree_details table td{
+        border-top:0px !important;
+        border-bottom:0px !important;
+    }
+    #task_files_details table th{
+        border-top:0px !important;
+        border-bottom:0px !important;
+    }
+    #task_files_details table td{
+        border-top:0px !important;
+        border-bottom:0px !important;
+    }
+    #task_status_details table th{
+        border-top:0px !important;
+        border-bottom:0px !important;
+    }
+    #task_status_details table td{
+        border-top:0px !important;
+        border-bottom:0px !important;
+    }
+    #task_remarks_details table th{
+        border-top:0px !important;
+        border-bottom:0px !important;
+    }
+    #task_remarks_details table td{
+        border-top:0px !important;
+        border-bottom:0px !important;
+    }
+
+
+    /************* Start switch **************/
+    .anil_nepal{padding:0px 0px; width:100%; display:block;}
+    .switch {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 80px;
+        height: 19px;
+        padding: 3px;
+        margin: 0 7px 8px 0;
+        background: linear-gradient(to bottom, #eeeeee, #FFFFFF 25px);
+        background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF 25px);
+        border-radius: 18px;
+        box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        cursor: pointer;
+        box-sizing: content-box;
+    }
+    label {
+        font-weight: inherit;
+    }
+    input[type=checkbox], input[type=radio] {
+        margin: 4px 0 0;
+
+        line-height: normal;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+
+    .switch-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        box-sizing: content-box;
+    }
+    .switch-left-right .switch-input:checked ~ .switch-label {
+        background: inherit;
+    }
+    .switch-input:checked ~ .switch-label {
+        background: #E1B42B;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
+    }
+    .switch-left-right .switch-label {
+        overflow: hidden;
+    }
+    .switch-label, .switch-handle {
+        transition: All 0.3s ease;
+        -webkit-transition: All 0.3s ease;
+        -moz-transition: All 0.3s ease;
+        -o-transition: All 0.3s ease;
+    }
+    .switch-label {
+        position: relative;
+        display: block;
+        height: inherit;
+        font-size: 9px;
+        text-transform: uppercase;
+        background: #eceeef;
+        border-radius: inherit;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
+        box-sizing: content-box;
+    }
+    .switch-left-right .switch-input:checked ~ .switch-label:before {
+        opacity: 1;
+        left: 100px;
+    }
+    .switch-input:checked ~ .switch-label:before {
+        opacity: 0;
+    }
+    .switch-left-right .switch-label:before {
+        background: #eceeef;
+        text-align: left;
+        padding-left: 80px!important;
+    }
+    .switch-left-right .switch-label:before, .switch-left-right .switch-label:after {
+        width: 20px;
+        height: 20px;
+        top: 4px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 11px 0 0 0;
+        text-indent: -12px;
+        border-radius: 20px;
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2), inset 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    .switch-label:before {
+        content: attr(data-off);
+        right: 11px;
+        color: #aaaaaa;
+        text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+    }
+
+    span.switch-label:after {
+        content: attr(data-on);
+        left: 11px;
+        color: #FFFFFF;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+        position: absolute;
+
+    }
+
+    .switch-label:before, .switch-label:after {
+        position: absolute;
+        top: 50%;
+        margin-top: -5px;
+        line-height: 1;
+        -webkit-transition: inherit;
+        -moz-transition: inherit;
+        -o-transition: inherit;
+        transition: inherit;
+        box-sizing: content-box;
+    }
+
+    .switch-left-right .switch-input:checked ~ .switch-label:after {
+        left: 0!important;
+        opacity: 1;
+        padding-left: 20px;
+    }
+
+
+    .switch-input:checked ~ .switch-label:after {
+        opacity: 1;
+    }
+
+
+    .switch-left-right .switch-label:after {
+        text-align: left;
+        text-indent: 9px;
+        background: #FF7F50!important;
+        left: -100px!important;
+        opacity: 1;
+        width: 100%!important;
+
+    }
+    .switch-left-right .switch-label::before, .switch-left-right .switch-label::after {
+        width: 117px;
+        height: 20px;
+        top: -1px;
+        left: -49px;
+        right: 23px;
+        bottom: 0;
+        padding: 11px 0 0 0;
+        text-indent: -12px;
+        border-radius: 20px;
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2), inset 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    .switch-input:checked ~ .switch-handle {
+        left: 66px;
+        box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+    .switch-label, .switch-handle {
+        transition: All 0.3s ease;
+        -webkit-transition: All 0.3s ease;
+        -moz-transition: All 0.3s ease;
+        -o-transition: All 0.3s ease;
+    }
+
+    .switch-handle {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 16px;
+        height: 16px;
+        background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
+        background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
+        border-radius: 100%;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .switch-handle:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -6px 0 0 -6px;
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(to bottom, #eeeeee, #FFFFFF);
+        background-image: -webkit-linear-gradient(top, #eeeeee, #FFFFFF);
+        border-radius: 6px;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
+    }
+    /**************End switch************/         
+
+
+
+  .dept-box a .card-block :hover {
+        background: #E9F9FF;
+        color:#000;
+    }
+    .progress-bar[aria-valuenow="0"] {
+
+        word-wrap:normal;
+    }
+
+    .border-bottom-primary:hover {
+        cursor: pointer;
+        color: #000;
+        background: #E9F9FF;
+    }
+
+    .common-height{
+        min-height:180px;
+    }
+    .dept-box{
+        padding:0px 0px 0px 20px;
+    }
+
+
+/*    .dept-box:last-child {
+        padding:0px 20px 0px 20px; 
+    }*/
+
+
+.plupload_header{
+    display:none;
+}
+.plupload_filelist {
+    height:100px !important;
+}
+
+.plupload_filelist .plupload_file_name {
+    width: 95px !important;   
+}
+
+.plupload_file_size, .plupload_file_status, .plupload_progress {
+    
+    width: 46px !important;
+}
+
+.plupload_filelist_footer .plupload_file_size, .plupload_filelist_footer .plupload_progress,.plupload_filelist_footer .plupload_file_status{
+   display:none;
+}
+
+.plupload_filelist_footer .plupload_file_size, .plupload_filelist_footer .plupload_progress,.plupload_filelist_footer .plupload_file_status {
+    display:none;
+}
+.activeItem{
+    font-weight:bold;
+    font-size:17px;
+}
+</style>
+
+<div class="tab-content card-block">
+    <div class="tab-pane active" id="home7" role="tabpanel">
+        <div class="card">
+
+
+            <div id="project_lists" class="card-block" >
+                <div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">
+                    <h3 style="text-align: center;">Project Progress</h3>
+                    <table id="" class="table">
+
+                        <thead>
+
+<!--                                                    <tr class="border-bottom-primary">-->
+                            <tr class="">
+                                <th style="width:5%;">Code</th>
+                                <th style="width:50%;">Project Name</th>
+                                <th style="width:10%;">Type Of Project</th>
+                                <th style="width:10%;">Location of project </th>
+                                <th style="width:10%;">Progress</th>
+                                <th style="width:5%;">&nbsp;</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="ongoingProjectTable">
+                            <?php
+                            if (count($projects)>0) {
+                                foreach ($projects as $project) {
+                                    ?>
+                                    <tr class="border-bottom-primary">
+                                        <td  onclick="get_project_dept_info(<?php echo $project['project_id'] . ',' . $this->user_id; ?>)">
+        <?php echo $project['code']; ?>
+                                        </td>
+                                        <td>
+                                            <?php if(strlen($project['project_name'])>70){ ?>
+                        <marquee scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()"><a href="javascript:" onclick="get_project_dept_info(<?php echo $project['project_id'] . ',' . $this->user_id; ?>)"><?php echo $project['project_name']; ?></a></marquee>
+                                        <?php }else{ ?>
+                                        <a href="javascript:" onclick="get_project_dept_info(<?php echo $project['project_id'] . ',' . $this->user_id; ?>)"><?php echo $project['project_name']; ?></a>
+                                        <?php } ?>
+                                        </td>
+                                        <td  onclick="get_project_dept_info(<?php echo $project['project_id'] . ',' . $this->user_id; ?>)">
+        <?php echo $project['ptype']; ?>
+                                        </td>
+
+
+                                        <td  onclick="get_project_dept_info(<?php echo $project['project_id'] . ',' . $this->user_id; ?>)">
+        <?php echo $project['site_location'] . ',' . $project['district']; ?>
+                                        </td>
+
+                                        <td>
+                                            <a href="javascript:" onclick="get_project_dept_info(<?php echo $project['project_id'] . ',' . $this->user_id; ?>)">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress_project_<?php echo $project['project_id']; ?>" role="progressbar" style="width: <?php echo round($project['progress']); ?>%; <?php if (round($project['progress']) > 10) {
+            echo 'color:#000 !important';
+        } else {
+            echo 'color:#000 !important';
+        } ?>" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><?php echo round($project['progress'], 2); ?>%</div>
+                                                </div>
+                                            </a>    
+                                        </td>
+                                        <td>
+                                           
+                                                <div class="dropdown">
+                                                    <i class="  fa fa-cogs" data-toggle="dropdown"></i>
+                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                                       <?php if (!empty($project['pm'])) { ?>
+                                                        <li role="presentation"><a href="javascript:" onclick="make_as_complete(<?php echo $project['project_id']; ?>)" >Make As Complete</a></li>                                                                           
+                                                      <?php } ?>
+                                                        <li role="presentation"><a href="<?php echo site_url('moderator/value_report/'.$project['project_id']) ?>" target="_blank">Report</a></li>                                                                           
+                                                </div>
+                                    
+                                            
+                                        </td>
+
+                                    </tr>
+    <?php
+    }
+}
+?>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div><!--End Ongoing Project Lists-->
+
+            <div id="project_details"  style="display:none;" >
+                <div class="card-block"  id="project_basic_info">
+                    <div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">
+                        <button id="back_project_list" class="btn btn-primary" style="float:left;padding:0px 6px;font-size:13px;" ><i class="fa fa-undo" aria-hidden="true"></i> Go Back</button> 
+
+                        <h3 style="text-align: center;">Project Progress:<span id="project_code"></span></h3>
+                        <table class="table">
+
+                            <thead>
+
+<!--                                                                <tr class="border-bottom-primary">-->
+                                <tr>
+                                    <th style="width:10%;">Project Code</th>
+                                    <th style="width:40%;">Project Name</th>
+
+                                    <th style="width:10%;">Location of project </th>
+                                    <th style="width:15%;">Progress</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="task_basic_info_details">
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div><!--End Project Basic Info -->
+
+                <div id="project_department" class="container-fluid">
+                    <div id="project_department_all" class="row">
+
+                    </div>
+<!--                    <div id="project_department_dropdown" class="row" style="padding-left:17px;">
+                        <select id="dept_drop_down"  class="col-md-2 form-control" onchange="javascript:deptChart();">
+                             
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="card sale-card">
+                                <div class="card-header">
+                                    <h5 style="text-align:center;"></h5>
+                                </div>
+                                <div class="card-block">
+                                    <div id="container" style="width:100%;height: 400px; margin: 0 auto"></div>
+                                            <pre style="display:none" id="chartdata">
+                                            
+                                            </pre>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>-->
+
+                    
+                </div><!-- End Project Department -->
+
+                <div id="department_details" style="display:none;">
+
+                    <div id="dept_progress" style="margin-top:-30px;">
+                        <div class="card-block"  >
+                            <div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">
+                                <button id="back_department_list" class="btn btn-primary" style="float:left;padding:0px 6px;font-size:13px;" ><i class="fa fa-undo" aria-hidden="true"></i> Go Back</button> 
+                                <input type="hidden" id="specific_dept_id" value="" />
+                                <input type="hidden" id="user_role" value="" />
+                                <h3 style="text-align:center;"><span id="specific_dept_name">Design</span></h3>
+                                <div class="progress" id="dept_progress_bar">
+                                    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+
+                            </div>
+
+                        </div><!--End Dept Block-->
+                    </div><!--End Dept Progress Bar  -->
+
+                    <div id="dept_task_list" style="margin-top:-30px;">
+                        <div class="card-block"  >
+                            <div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">
+                                <table style="width:100%">
+                                    <thead>
+                                        <tr class="">
+                                            <th> SL</th>
+                                            <th>Task Name</th>
+                                            <th>Starting Date</th>
+                                            <th>Ending Date</th>
+                                            <th>Progress</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dept_task_body">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div><!--End Dept Task List -->
+                    
+                    
+
+                    <div id="dept_task_details" style="display:none;">
+                        <div class="row">
+                            <div class="col-md-7 " id="task_tree"  style="margin-top:-30px;">
+                                <div class="card-block"  style="padding-right:0px;">
+                                    <div class="shadow table-responsive common-height" style="border:1px solid #BFBFBF;padding:10px;min-height:250px;">
+                                        <button id="back_task_list" class="btn btn-primary" style="float:left;padding:3px 6px;font-size:13px;" ><i class="fa fa-undo" aria-hidden="true"></i> Go Back</button> 
+                                        <h3 style="text-align: center;background: blue;color: #fff;font-weight: bold;">Task Tree</h3>
+                                        <div id="task_tree_details">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="">
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+
+                                                        <th style="width:25%;"></th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="dept_task_detail_body">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!--End Dept Block-->
+                                <div class="crearfix"></div>
+                                <div class="col-md-12" style="width:100%;padding-right: 0px;">
+                                   <div class="col-md-6 " id="dept_task_files" style="margin-top:-30px;float:left;padding-left: 0px;">
+                                <div class="card-block"  style="padding-right:0px;padding-left: 6px;">
+                                    <div class="shadow table-responsive common-height" style="border:1px solid #BFBFBF;padding:10px;">
+                                        
+                                        <!--
+                                        <div id="onscreen_uploader" class="upload"> 
+
+                                       </div>
+                                       <input type="hidden" name="files" id="file_name"/>
+                                       <input type="hidden" id="file_task_id"/>
+                                        -->
+                                        <input type="hidden" id="file_task_id1"/>
+                                        <h3 style="text-align: center;">Files</h3>
+                                        <div id="task_files_details">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="">
+                                                        <th></th>
+                                                        <th></th>
+
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="dept_task_files_body">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="html4_uploader1" class="upload"> 
+
+                                        </div>
+                                    </div>
+                                </div><!--End Dept Block-->
+
+                                <div id="delete_file_request_modal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete File</h4>
+                                                <button id="reset_request_close" type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+
+                                                            <input type="hidden" id="delete_file_id" value="" />
+                                                            <input class="form-control "  id="delete_reason_id" name="delete_reason" type="text" value="" placeholder="Reason">
+                                                            <span id="delete_reason_error" style="color:red"></span>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div><!--End Row-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="delete_request_discard" type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
+                                                <button id="save_delete_request" type="button" class="btn btn-primary" data-dismiss="modal" >Save</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div><!--End Task Files-->
+                            
+                            
+                            <div class="col-md-6 " id="dept_task_remarks" style="margin-top:-30px;padding-left: 0px;padding-right: 0px; float:left;">
+                                <div class="card-block" style="padding-left:0px;padding-right:0px;" >
+                                    <div class="shadow table-responsive common-height" style="border:1px solid #BFBFBF;padding:10px;">
+                                        <button id="add_remark" class="btn btn-primary" style="float:left;padding:2px 6px;font-size:10px;" data-toggle="modal" data-target="#commentModal"><i class="fa fa-plus" style="margin-right:0px"></i></button> <h3 style="text-align: center;">Remarks</h3>
+                                        <div id="task_remarks_details">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="">
+                                                        <th></th>
+                                                        <th></th>
+
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="dept_task_remark_body">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!--End Dept Block-->
+
+                                <div id="commentModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Remark</h4>
+                                                <button id="task_comment_close" type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" id="comment_task_id" value="" />
+                                                            <input class="form-control "  id="comment" name="comment" type="text" value="">
+                                                            <span id="dept_name_error" style="color:red"></span>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div><!--End Row-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="task_comment_discard" type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
+                                                <button id="comment_save" type="button" class="btn btn-primary" data-dismiss="modal" >Save</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div id="editCommentModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Remark</h4>
+                                                <button id="edit_comment_close" type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" id="edit_comment_task_id" value="" />
+                                                            <input type="hidden" id="edit_comment_id" value="" />
+                                                            <input class="form-control "  id="edit_comment" name="comment" type="text" value="">
+                                                            <span id="edit_comment_error" style="color:red"></span>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div><!--End Row-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="edit_comment_discard" type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
+                                                <button id="comment_update" type="button" class="btn btn-primary" data-dismiss="modal" >Update</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
+                            </div><!--End task Remark--> 
+                                </div>
+                                
+
+                            </div><!--End task Tree-->
+
+                            <div class="col-md-5 " id="dept_task_status" style="margin-top:-30px;padding-left: 0px;">
+                                <div class="card-block"  style="padding-left: 0px;">
+                                    <div class="shadow table-responsive common-height" style="border:1px solid #BFBFBF;padding:10px;min-height:445px;">
+                                        <h3 style="text-align: center;">Status</h3>
+                                        <div id="task_status_details">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="">
+                                                        <th></th>
+                                                        <th></th>
+
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="dept_task_status_body">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!--End Dept Block-->
+                                <div id="reset_request_modal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Reset Status</h4>
+                                                <button id="reset_request_close" type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" id="reset_task_id" value="" />
+                                                            <input type="hidden" id="reset_status_id" value="" />
+                                                            <input class="form-control "  id="reset_reason_id" name="comment" type="text" value="" placeholder="Reason">
+                                                            <span id="reset_reason_error" style="color:red"></span>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div><!--End Row-->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="reset_request_discard" type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
+                                                <button id="save_reset_request" type="button" class="btn btn-primary" data-dismiss="modal" >Save</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div><!--End Status Tree-->
+
+                            
+
+                            
+
+
+
+                        </div>
+                    </div>
+
+                    <div id="dept_task_status_details" style="display:none;">
+                        <div class="row">
+                            <div class="col-md-12" id="dept_task_detail_status_list" style="margin-top:-30px;">
+                                <div class="card-block"  >
+                                    <div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">
+                                        <button id="" class="back_task_list btn btn-primary" style="float:left;padding:0px 6px;font-size:13px;" ><i class="fa fa-undo" aria-hidden="true"></i> Go Back</button> 
+                                        <h3 style="text-align: center;">Status of <span id="status_task_name"></span></h3>
+                                        <div id="task_status_details">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="">
+                                                        <th></th>
+                                                        <th></th>
+
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="dept_task_details_status_body">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div><!--End Dept Block-->
+                            </div><!--End Status Tree-->
+                        </div> 
+                        <div id="details_reset_status_request_modal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Request For Reset Status</h4>
+                                        <button id="details_reset_request_close" type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" id="details_reset_status_task_id" value="" />
+                                                    <input type="hidden" id="details_reset_status_id" value="" />
+                                                    <input class="form-control "  id="details_reset_reason_id" name="comment" type="text" value="" placeholder="Reason">
+                                                    <span id="details_reset_reason_error" style="color:red"></span>
+                                                </div>
+                                            </div>
+
+
+                                        </div><!--End Row-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="details_reset_request_discard" type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
+                                        <button id="details_save_reset_request" type="button" class="btn btn-primary" data-dismiss="modal" >Save</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!--End Reset Status Modal For all Status -->
+                    </div><!--End Dept Task Status Details-->
+
+                    <div id="dept_task_details_file" style="display:none;">
+                        <div class="row">
+                            <div class="col-md-12" id="dept_task_detail_status_list" style="margin-top:-30px;">
+                                <div class="card-block"  >
+                                    <div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">
+                                        <button id="" class="back_task_list btn btn-primary" style="float:left;padding:0px 6px;font-size:13px;margin-right:5px;" ><i class="fa fa-undo" aria-hidden="true"></i> Go Back</button>
+
+                                        <input type="hidden" name="files" id="file_name"/>
+                                        <input type="hidden" id="file_task_id"/>
+                                        <h3 style="text-align: center;">Files of <span id="file_task_name"></span></h3>
+                                        <div id="task_files_details">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="">
+                                                        <th></th>
+                                                        <th></th>
+
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="dept_task_details_file_body">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div id="html4_uploader" class="upload"> 
+
+                                        </div>
+                                    </div>
+                                </div><!--End Dept Block-->
+                            </div><!--End Status Tree-->
+                        </div>   
+                        <div id="delete_details_file_request_modal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Request For Delete File</h4>
+                                        <button id="details_file_request_close" type="button" class="close" data-dismiss="modal">&times;</button>
+
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="hidden" id="delete_details_file_id" value="" />
+
+                                                    <input class="form-control "  id="delete_details_reason_id" name="comment" type="text" value="" placeholder="Reason">
+                                                    <span id="details_delete_file_reason_error" style="color:red"></span>
+                                                </div>
+                                            </div>
+
+
+                                        </div><!--End Row-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="" type="button" class="btn btn-danger" data-dismiss="modal">Discard</button>
+                                        <button id="save_delete_details_file_request" type="button" class="btn btn-primary" data-dismiss="modal" >Save</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!--End Reset Status Modal For all Status -->
+                    </div><!--End Dept Task File Details-->
+
+                </div><!--End Project Department Details-->
+
+            </div><!--End Project Details-->
+
+        </div><!--End Parent Card block-->
+
+
+    </div><!--End Ongoing Project Tab-->
+</div>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+$(".myMarquee").hover
+  (
+    function()
+    {
+       $(this).attr("behavior","scroll");
+       $(this).attr("scrollamount","6");
+    },
+    function()
+    {
+       $(this).attr("scrollamount","0");
+    }
+  )
+})
+    
+    //$("#order-table").orderable();
+//    $("#ongoingProjectTable").orderable({
+//        onLoad: function () { console.info('I loaded!') },
+//        onInit: function () { console.info('I did all my thingies!') },
+//        onOrderStart: function (element) { console.info('I\'m reordering! Selected unit: ', element) },
+//        onOrderCancel: function (element) { console.info('I\'m not reordering anymore, I got cancelled! Selected unit: ', element) },
+//        onOrderFinish: function (element) { console.info('I\'ve finished reordering! Selected unit: ', element) },
+//        onOrderReorder: function (element) { console.info('I\'ve finished reordering and I definitely changed order! Changed unit: ', element) },
+//    });
+    $('#ongoingProjectTable').sortable();</script>
+
+
+
+
+<script type="text/javascript">
+    $('.back_task_list').click(function(){
+    $('#dept_task_status_details').hide();
+    $('#dept_task_details_file').hide();
+    $('#dept_task_list').show();
+    });
+    function update_task_status(task_id = ''){
+    // alert('test');
+//                   $('#add_remark').hide();
+//                   $('#upload_task_file').hide();
+//                   $('#dept_task_detail_body a').css("border","none");
+//                   $('#task_name_'+task_id).css("border","1px solid #00FF00");
+//                   $('#comment_task_id').val(task_id);
+//                   $('#file_task_id').val(task_id);
+    $('#dept_task_status_details').show();
+    $('#dept_task_list').hide();
+    var dept_id = $('#specific_dept_id').val();
+    var user_role = $('#user_role').val();
+    var user_role_array = user_role.split(',');
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/deptTaskDetailsStatus",
+            data:{task_id:task_id, dept_id:dept_id},
+            dataType: "json",
+            success: function (data) {
+
+//                               if(data.root_task!=''){
+//                                   $('#add_remark').show();
+//                                   $('#upload_task_file').show();
+//                               }
+            $('#status_task_name').html(data.task_information[0].task_name);
+            var str1 = '';
+            $(data.task_status).each(function (j, w) {
+                if(w.status_name!=null){
+            str1 += '<tr class="border-bottom-primary">';
+            if (w.status == "incomplete"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:red;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            } else if (w.status == "complete"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:green;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            } else if (w.status == "reset"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:blue;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            }
+            str1 += '<td style="width:10%">';
+            if (w.status == "incomplete"){
+            //  str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            //   str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+            //str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:completeDetailsStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-trash"></i>Mark As Complete</a></li>';
+            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="completeDetailsStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" type="checkbox">';
+            str1 += '<span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+            str1 += '</div>';
+            }
+            //  str1+='</ul></div>';
+            } else if (w.status == "complete"){
+            // str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            //  str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+            //  str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:detailsResetStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-eye"></i>Request For Reset</a></li>';
+            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="detailsResetStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" checked type="checkbox">';
+            str1 += '<span class="switch-label" data-on="Reset" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+            str1 += '</div>';
+            }
+            // str1+='</ul></div>'; 
+            }
+            str1 += '</td>';
+            str1 += '</tr>';
+                }
+            });
+            $('#dept_task_details_status_body').html(str1);
+            }
+
+    }); //end Ajax
+    }
+
+   async function completeDetailsStatus(task_id = '', status_id = ''){
+
+    var dept_id = $('#specific_dept_id').val();
+    var r = confirm("Are you sure?");
+    var user_role = $('#user_role').val();
+    var user_role_array = user_role.split(',');
+    if (r == true){
+    //var r_status = validate_password();
+     var r_status = await validate_password_b();
+    if (r_status == true){
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/completeStatus",
+            data:{task_id:task_id, status_id:status_id, dept_id:dept_id},
+            dataType:"json",
+            success: function (data) {
+
+            if (data.status == "success"){
+
+            var str1 = '';
+            $(data.task_status).each(function (j, w) {
+                if(w.status_name!=null){
+            str1 += '<tr class="border-bottom-primary">';
+            if (w.status == "incomplete"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:red;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            } else if (w.status == "complete"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:green;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            } else if (w.status == "reset"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:blue;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            }
+            str1 += '<td style="width:10%">';
+            if (w.status == "incomplete"){
+            //str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            // str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+            //  str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:completeDetailsStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-trash"></i>Mark As Complete</a></li>';
+            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="completeDetailsStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" type="checkbox">';
+            str1 += '<span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+            str1 += '</div>';
+            }
+            // str1+='</ul></div>';
+            } else if (w.status == "complete"){
+            // str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            //   str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+            //str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:detailsResetStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-eye"></i>Request For Reset</a></li>';
+            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="detailsResetStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" checked type="checkbox">';
+            str1 += '<span class="switch-label" data-on="Reset" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+            str1 += '</div>';
+            }
+            //str1+='</ul></div>'; 
+            }
+            str1 += '</td>';
+            str1 += '</tr>';
+                }
+            });
+            $('#dept_task_details_status_body').html(str1);
+            }
+            }
+    });
+    }
+    }
+    }
+
+
+    async function detailsResetStatus(task_id = '', status_id = ''){
+    var dept_id = $('#specific_dept_id').val();
+    var r = confirm("Are you sure?");
+    if (r == true){
+    //var r_status = validate_password();
+     var r_status = await validate_password_b();
+    if (r_status == true){
+        $('#details_reset_status_task_id').val(task_id);
+        $('#details_reset_status_id').val(status_id);
+        $('#details_reset_status_reason_id').val('');
+        $('#details_reset_status_request_modal').modal('show');
+    }
+    }
+    }
+
+
+
+    $('#details_save_reset_request').click(function(){
+    var dept_id = $('#specific_dept_id').val();
+    var task_id = $('#details_reset_status_task_id').val();
+    var status_id = $('#details_reset_status_id').val();
+    var reason = $('#details_reset_reason_id').val();
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/resetStatus",
+            data:{task_id:task_id, status_id:status_id, dept_id:dept_id, reason:reason},
+            dataType:"json",
+            success: function (data) {
+            $('#details_reset_status_task_id').val('');
+            $('#details_reset_status_id').val('');
+            $('#details_reset_reason_id').val('');
+            if (data.status == "success"){
+
+            var str1 = '';
+            $(data.task_status).each(function (j, w) {
+                if(w.status_name!=null){
+            str1 += '<tr class="border-bottom-primary">';
+            if (w.status == "incomplete"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:red;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            } else if (w.status == "complete"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:green;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            } else if (w.status == "reset"){
+            str1 += '<td style="width:50%;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i><span style=color:blue;>' + (w.status_name).substr(0, 50) + '<span></td>';
+            }
+            str1 += '<td style="width:10%">';
+            if (w.status == "incomplete"){
+                                       str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                       str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                                       str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:completeDetailsStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-trash"></i>Mark As Complete</a></li>';
+                                       str1+='</ul></div>';
+          //  str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="completeDetailsStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" type="checkbox">';
+          //  str1 += '<span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+         //   str1 += '</div>';
+            } else if (w.status == "complete"){
+                                       str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                       str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                                       str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:detailsResetStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-eye"></i>Request For Reset</a></li>';
+                                       str1+='</ul></div>'; 
+    //        str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="detailsResetStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" checked type="checkbox">';
+     //       str1 += '<span class="switch-label" data-on="Reset" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+     //       str1 += '</div>';
+            }
+            str1 += '</td>';
+            str1 += '</tr>';
+                }
+            });
+            $('#dept_task_details_status_body').html(str1);
+            }
+            }
+    }); });
+    function view_task_file(task_id = ''){
+         
+    var dept_id = $('#specific_dept_id').val();
+    
+    $('#dept_task_details_file').show();
+    $('#file_task_id').val(task_id);
+    $('#dept_task_list').hide();
+    var user_role = $('#user_role').val();
+    var user_role_array = user_role.split(',');
+    if ($.inArray('4', user_role_array) > - 1){
+        $('#html4_uploader').show();
+        $('#html4_uploader1').show();
+    } else{
+        $('#html4_uploader').hide();
+        $('#html4_uploader1').hide();
+    }
+    $.ajax({
+            type:"POST",
+            url:"backend/moderator/deptTaskDetailsFile",
+            data:{task_id:task_id, dept_id:dept_id},
+            dataType: "json",
+            success: function (data) {
+                $('#file_task_name').html(data.task_information[0].task_name);
+                var str = '';
+                $(data.task_files).each(function (i, v) {
+                str += '<tr class="border-bottom-primary">';
+                str += '<td style="width:50%;white-space:normal;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + v.file_name + '</td>';
+                str += '<td style="width:10%;white-space:normal;">';
+                str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                //str+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:fileDownload('+v.file_id+');"><i class="fa fa-eye"></i>View Or Download</a></li>';
+                str += '<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="<?php echo site_url(); ?>/' + v.unique_name + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+                if ($.inArray('4', user_role_array) > - 1){
+                str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteDetailsFileRequest(' + v.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+                }
+                str += '</ul></div>';
+                str += '</td>';
+                str += '</tr>';
+                });
+                $('#dept_task_details_file_body').html(str);
+                
+                
+                
+                 initiateUploader();
+                 function initiateUploader(){
+                        $("#html4_uploader").pluploadQueue({
+                            // General settings
+                                runtimes : 'html4',
+                                url : "<?php echo site_url("moderator/image_upload/"); ?>",
+                                unique_names : true,
+                                multipart_params:{'task_id':$('#file_task_id').val(), 'dept_id':$('#specific_dept_id').val()},
+                                filters : {
+                                    mime_types: [
+                                        {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+                {title : "Zip files", extensions : "zip"},
+                {title : "PDF files", extensions : "pdf"},
+                {title : "Drawing files", extensions : "dwg,mpp,ppt,pptx,ai,eps,psd"},
+                {title : "Excel files", extensions : "xlx,xlsx,csv"},
+                {title : "DOC files", extensions : "doc,docx"}
+                                    ]
+                               }
+
+
+                         });
+                         uploader = $('#html4_uploader').pluploadQueue();
+   
+                        uploader.bind("FileUploaded", function (up, file, response) {
+       
+                                $.extend(up.settings.multipart_params, {
+                                'task_id': $('#file_task_id').val(),
+                                        'dept_id': $('#specific_dept_id').val(),
+                                });
+                                var data = $.parseJSON(response.response);
+
+                                if (typeof (data.temp_file_path) != 'undefined' && data.temp_file_path != "") {
+                                    temp_file_paths.push(data.temp_file_path);
+                                }
+                                if (typeof (data.file_name) != 'undefined' && data.file_name != "") {
+                                    file_names.push(data.file_name);
+                                }
+                                var str = '';
+                                str += '<tr class="border-bottom-primary">';
+                                str += '<td style="width:50%;white-space:normal;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + data.file_name + '</td>';
+                                str += '<td style="width:10%;white-space:normal;">';
+                                str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                                str += '<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="<?php echo site_url(); ?>/' + data.unique_name + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+                                str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + data.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+                                str += '</ul></div>';
+                                str += '</td>';
+                                str += '</tr>';
+                                // $('#dept_task_files_body').append(str);
+                                $('#dept_task_details_file_body').append(str);
+                                initiateUploader();
+                             });
+    
+  
+                        
+                      
+                     }    
+            }
+           
+    }); //end Ajax
+    }
+
+    async function deleteDetailsFileRequest(file_id = ''){
+
+        var dept_id = $('#specific_dept_id').val();
+        var r = confirm("Are you sure to delete this file?");
+        if (r == true){
+            //var r_status = validate_password();
+             var r_status = await validate_password_b();
+             //alert('test');
+            if (r_status == true){
+               // alert('test')
+                //  alert(file_id);
+                $('#delete_details_file_id').val(file_id);
+                $('#delete_details_reason_id').val('');
+                $('#delete_details_file_request_modal').modal('show');
+             }
+        }
+    }
+
+    $('#save_delete_details_file_request').click(function(){
+    var dept_id = $('#specific_dept_id').val();
+    var file_id = $('#delete_details_file_id').val();
+    var reason = $('#delete_details_reason_id').val();
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/requestForDeleteFile",
+            data:{file_id:file_id, dept_id:dept_id, reason:reason},
+            dataType:"json",
+            success: function (data) {
+
+            $('#delete_details_file_id').val('');
+            $('#delete_details_reason_id').val('');
+            if (data.status == "success"){
+            alert('Successfully Request Sent');
+            }
+            }
+ });
+    });
+//    var uploader;
+//    var temp_file_paths = new Array();
+//    var file_names = new Array();
+//    var temp_name;
+//    $(document).ready(function () {
+//
+//    $('div[id*="temp_image_"]').on('mouseenter', function () {
+//    var id = $(this).attr('id');
+//    $('#' + id).children('.templete_delete').show();
+//    })
+//            $('div.temp_image').on('mouseleave', function () {
+//    $('span.templete_delete').hide();
+//    })
+//            initiateUploader($('#file_task_id').val(), $('#specific_dept_id').val());
+//    $('.btnStart').on('click', function (e) {
+//    e.preventDefault();
+//    if ($('select#template').val() == 'null') {
+//    alert('Please select any templete');
+//    } else {
+//    startUpload();
+//    }
+//
+//    });
+//    $('.btnCancel').on('click', function (e) {
+//    e.preventDefault();
+//    uploader.stop()
+//            uploader.splice();
+//    $(".progressing").hide();
+//    $(".btnCancel").addClass("disable");
+//    $(".idle").show();
+//    });
+//    $('#onscreen_uploader_browse').html('<i class="fa fa-upload" aria-hidden="true"></i> &nbsp; Upload File');
+//    $('#onscreen_uploader1_browse').html('<i class="fa fa-upload" aria-hidden="true"></i> &nbsp; Upload File');
+//    });
+//    function initiateUploader(task_id, dept_id) {
+//    //   var dept_id=$('#specific_dept_id').val();
+//    //      alert(task_id);
+//    var file_names = new Array();
+//    $("#onscreen_uploader1").html("");
+//    $("#onscreen_uploader").html("");
+//    $("#onscreen_uploader").pluploadQueue({
+//    // General settings
+//    runtimes: 'html5,silverlight,flash,html4',
+//            url: '<?php echo site_url("moderator/image_upload/"); ?>',
+//            max_file_size: '1024mb',
+//            chunk_size: '2mb',
+//            multipart_params:{'task_id':task_id, 'dept_id':dept_id},
+//            unique_names: true,
+//            multiple_queues: true,
+//            rename: true,
+//            flash_swf_url: 'uploader_js/plupload.flash.swf',
+//            silverlight_xap_url: 'uploader_js/plupload.silverlight.xap'
+//    });
+//    $("#onscreen_uploader1").pluploadQueue({
+//    // General settings
+//    runtimes: 'html5,silverlight,flash,html4',
+//            url: '<?php echo site_url("moderator/image_upload/"); ?>',
+//            max_file_size: '1024mb',
+//            chunk_size: '2mb',
+//            multipart_params:{'task_id':task_id, 'dept_id':dept_id},
+//            unique_names: true,
+//            multiple_queues: true,
+//            rename: true,
+//            flash_swf_url: 'uploader_js/plupload.flash.swf',
+//            silverlight_xap_url: 'uploader_js/plupload.silverlight.xap'
+//    });
+//    uploader = $('#onscreen_uploader').pluploadQueue();
+//    uploader1 = $('#onscreen_uploader1').pluploadQueue();
+//    uploader.bind("FileUploaded", function (up, file, response) {
+//
+//    $.extend(up.settings.multipart_params, {
+//    'task_id': $('#file_task_id').val(),
+//            'dept_id': $('#specific_dept_id').val(),
+//    });
+//    var data = $.parseJSON(response.response);
+//    if (typeof (data.temp_file_path) != 'undefined' && data.temp_file_path != "") {
+//    temp_file_paths.push(data.temp_file_path);
+//    }
+//    if (typeof (data.file_name) != 'undefined' && data.file_name != "") {
+//    file_names.push(data.file_name);
+//    }
+//    var str = '';
+//    str += '<tr class="border-bottom-primary">';
+//    str += '<td style="width:50%"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + data.file_name + '</td>';
+//    str += '<td style="width:10%">';
+//    str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+//    str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+//    str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('backend/moderator/fileDownload'); ?>/' + data.file_id + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+//    str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + data.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+//    str += '</ul></div>';
+//    str += '</td>';
+//    str += '</tr>';
+//    // $('#dept_task_files_body').append(str);
+//    $('#dept_task_details_file_body').append(str);
+//    });
+//    uploader1.bind("FileUploaded", function (up, file, response) {
+//
+//    $.extend(up.settings.multipart_params, {
+//    'task_id': $('#file_task_id').val(),
+//            'dept_id': $('#specific_dept_id').val(),
+//    });
+//    var data = $.parseJSON(response.response);
+//    if (typeof (data.temp_file_path) != 'undefined' && data.temp_file_path != "") {
+//    temp_file_paths.push(data.temp_file_path);
+//    }
+//    if (typeof (data.file_name) != 'undefined' && data.file_name != "") {
+//    file_names.push(data.file_name);
+//    }
+//    var str = '';
+//    str += '<tr class="border-bottom-primary">';
+//    str += '<td style="width:50%"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + data.file_name + '</td>';
+//    str += '<td style="width:10%">';
+//    str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+//    str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+//    str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('backend/moderator/fileDownload'); ?>/' + data.file_id + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+//    str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + data.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+//    str += '</ul></div>';
+//    str += '</td>';
+//    str += '</tr>';
+//    // $('#dept_task_files_body').append(str);
+//    $('#dept_task_details_file_body').append(str);
+//    $('#dept_task_files_body').append(str);
+//    });
+//    uploader.bind('BeforeUpload', function (up) {
+//    $.extend(up.settings.multipart_params, {
+//    'task_id': $('#file_task_id').val(),
+//            'dept_id': $('#specific_dept_id').val(),
+//    });
+//    });
+//    uploader1.bind('BeforeUpload', function (up) {
+//    $.extend(up.settings.multipart_params, {
+//    'task_id': $('#file_task_id').val(),
+//            'dept_id': $('#specific_dept_id').val(),
+//    });
+//    });
+//    uploader.bind('UploadFile', function (up, file) {
+//
+//    //  var dept_id=$('#specific_dept_id').val();
+//
+//    $.extend(up.settings.multipart_params, {
+//    'realName': file.name,
+//            'dept_id': $('#specific_dept_id').val(),
+//            'task_id': $('#file_task_id').val()
+//    });
+//    });
+//    uploader1.bind('UploadFile', function (up, file) {
+//
+//    //  var dept_id=$('#specific_dept_id').val();
+//
+//    $.extend(up.settings.multipart_params, {
+//    'realName': file.name,
+//            'dept_id': $('#specific_dept_id').val(),
+//            'task_id': $('#file_task_id').val()
+//    });
+//    });
+//    uploader.bind('QueueChanged', function () {
+//    //uploader.start();
+//    $(".progressing").show();
+//    $(".btnCancel").removeClass("disable");
+//    $(".idle").hide();
+//    });
+//    uploader1.bind('QueueChanged', function () {
+//    //uploader.start();
+//    $(".progressing").show();
+//    $(".btnCancel").removeClass("disable");
+//    $(".idle").hide();
+//    });
+//    uploader.bind('UploadComplete', function () {
+//
+//    $(".progressing").hide();
+//    $(".btnCancel").addClass("disable");
+//    $(".idle").show();
+//    var temp = temp_file_paths.join("?~?");
+//    var file = file_names.join("?~?");
+//    $("#temp_file_path").val(temp);
+//    var existing_files = $("#file_name").val();
+//    if (existing_files != '') {
+//    // existing_files = existing_files.slice(0, -1);
+//    $("#file_name").val(file_names + ',' + existing_files);
+//    //   show_image(file_names + ',' + existing_files)
+//
+//    } else {
+//    $("#file_name").val(file_names);
+//    // show_image(file_names)
+//
+//    }
+//
+//    initiateUploader($('#file_task_id').val(), $('#specific_dept_id').val());
+//    var templete = $('#hidden').val();
+//    $('#onscreen_uploader_browse').html('Select File');
+//    });
+//    uploader1.bind('UploadComplete', function () {
+//
+//    $(".progressing").hide();
+//    $(".btnCancel").addClass("disable");
+//    $(".idle").show();
+//    var temp = temp_file_paths.join("?~?");
+//    var file = file_names.join("?~?");
+//    $("#temp_file_path").val(temp);
+//    var existing_files = $("#file_name").val();
+//    $('#task_name_'+$('#file_task_id').val()).click()
+//    if (existing_files != '') {
+//    // existing_files = existing_files.slice(0, -1);
+//    $("#file_name").val(file_names + ',' + existing_files);
+//    //   show_image(file_names + ',' + existing_files)
+//
+//    } else {
+//    $("#file_name").val(file_names);
+//    // show_image(file_names)
+//
+//    }
+//
+//    initiateUploader($('#file_task_id').val(), $('#specific_dept_id').val());
+//    var templete = $('#hidden').val();
+//    $('#onscreen_uploader1_browse').html('Select File');
+//    });
+//    }
+//
+//    function startUpload() {
+//    //$("#file_name").val('');
+//    uploader.start();
+//    uploader1.start();
+//    $('.btnStart').hide();
+//    $('.btnCancel').show();
+//    }
+//    function show_image(files) {
+//    files = $('#file_name').val();
+//    files = files.toString().split(",");
+//    var str = '';
+//    $(files).each(function (i, v) {
+//    v = v.replace(v + ',', "");
+//    if (v != '') {
+//
+//    str += '<tr class="border-bottom-primary">';
+//    str += '<td style="width:50%"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + v + '</td>';
+//    str += '<td style="width:10%">';
+//    str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+//    str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+//    str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url('backend/moderator/fileDownload'); ?>/' + v + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+//    str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + v + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+//    str += '</ul></div>';
+//    str += '</td>';
+//    str += '</tr>';
+//    //     template_content += "<div  id='temp_image_" + i + "'><span style='' class='templete_delete' id='templete_delete_" + i + "'><span class='delete_image' id='delete_image_" + i + "' style='display:none'>" + v + "</span><img src='<?php echo site_url(); ?>assets/images/btn_delete.png'/></span><a style='height:80px;' href='<?php echo site_url(); ?>uploads/attach/" + v + "'>" + v + "</a></div>";
+//    }
+//    })
+//            $('#dept_task_files_body').html(str);
+//    }
+
+
+    //Div Link 
+    $('#back_project_list').click(function(){
+    $('#project_details').hide();
+    $('#department_details').hide();
+    $('#dept_task_details').hide();
+    $('#dept_task_status_details').hide();
+    $('#dept_task_details_file').hide();
+    $('#project_department').show();
+    $('#dept_task_list').show();
+    $('#project_lists').show();
+    });
+    $('#back_department_list').click(function(){
+    $('#dept_task_list').show();
+    $('#dept_task_status_details').hide();
+    $('#dept_task_details_file').hide();
+    $('#department_details').hide();
+    $('#dept_task_details').hide();
+    $('#project_department').show();
+    });
+    $('#back_task_list').click(function(){
+    $('#dept_task_details').hide();
+    $('#dept_task_list').show();
+    });
+    //Div Link End
+
+
+    //Ongoing Project
+    function get_project_dept_info(project_id = '', user_id = ''){
+    $('#project_lists').hide();
+    //alert('test');
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/projectAllDepartment",
+            data:{project_id:project_id, user_id:user_id},
+            dataType: "json",
+            success: function (data) {
+                
+                var al = '';
+                al = data.all; 
+                var cat = data.cat; 
+                var coml = '';
+                coml = data.completed; 
+            var project_code = data.project_info[0].code;
+            // $('#user_role').val(user_role);
+            $('#project_code').html(project_code);
+            var str = '';
+            $(data.project_info).each(function (i, v) {
+            var description = v.project_name;
+            str += '<tr class="border-bottom-primary">';
+            str += '<td>' + v.code + '</td>';
+            str += '<td><marquee onmouseover="this.stop();" onmouseout="this.start();">' + description + '</marquee></td>';
+            str += '<td>' + v.site_location + ',' + v.district + '</td>';
+            str += '<td><div class="progress"><div class="progress-bar progress_project_'+project_id+'" role="progressbar" style="width: ' + v.progress + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(v.progress).toFixed(2) + '%</div></div></td>';
+            str += '</tr>';
+            });
+            $('#task_basic_info_details').html(str);
+            var str1 = '';
+            //str1+='<div class="row">';
+            var dept_option='';
+            
+            $(data.project_departments).each(function (j, w) {
+                if(j==0){
+                    dept_option +='<option value="0,'+w.project_id+'">Overall Progress</option>';
+                }
+                dept_option +='<option value="'+w.dept_id+','+w.project_id+'" >'+w.dept_name+'</option>';
+            if ((user_id == w.user_id) || data.user_roles == 3){
+                
+                if(w.text_color!='' && w.text_color!=null){
+                    str1 += '<div class="col-md-2 dept-box" style="margin-top:-30px;"><a href="javascript:" onclick="get_dept_task_info(' + w.dept_id + ',' + w.project_id + ')"><div class="card-block" style="padding:15px 0px;"><div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;color:'+w.text_color+';background:'+w.box_color+'">';
+                }else{
+                    str1 += '<div class="col-md-2 dept-box" style="margin-top:-30px;"><a href="javascript:" onclick="get_dept_task_info(' + w.dept_id + ',' + w.project_id + ')"><div class="card-block" style="padding:15px 0px;"><div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">';
+                }    
+            } else{
+            if ($.inArray('2', data.user_roles) > - 1){
+               if(w.text_color!='' && w.text_color!=null){
+                    str1 += '<div class="col-md-2 dept-box" style="margin-top:-30px;"><a href="javascript:" onclick="get_dept_task_info(' + w.dept_id + ',' + w.project_id + ')"><div class="card-block" style="padding:15px 0px;"><div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;color:'+w.text_color+';background:'+w.box_color+'">';
+                }else{
+                    str1 += '<div class="col-md-2 dept-box" style="margin-top:-30px;"><a href="javascript:" onclick="get_dept_task_info(' + w.dept_id + ',' + w.project_id + ')"><div class="card-block" style="padding:15px 0px;"><div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">';
+                }    
+            } else{
+                if(w.text_color!='' && w.text_color!=null){
+                    str1 += '<div class="col-md-2 dept-box" style="margin-top:-30px;"><div class="card-block" style="padding:15px 0px;"><div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;color:'+w.text_color+';background:'+w.box_color+'">';
+                }else{
+                    str1 += '<div class="col-md-2 dept-box" style="margin-top:-30px;"><div class="card-block" style="padding:15px 0px;"><div class="shadow table-responsive" style="border:1px solid #BFBFBF;padding:10px;">';
+                }    
+            }
+            }
+            str1 += '<h5 style="text-align: center;" class="department_box">' + w.dept_name + '</h5>';
+            str1 += '<div class="progress"><div class="progress-bar progress_dept_'+ w.dept_id +'" role="progressbar" style="width: ' + w.progress + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(w.progress).toFixed(2) + '%</div>';
+            if ((user_id == w.user_id) || data.user_roles == 3){
+            str1 += '</div></div></div></a></div>';
+            } else{
+            str1 += '</div></div></div></div>';
+            }
+            });
+            //str1+='</div><div class="clearfix"></div>';
+            str1 += '</div>';
+            $('#project_department_all').html(str1);
+            $('#dept_drop_down').html(dept_option);
+            $('#project_details').show();
+//          Highcharts.chart('container', {
+//    chart: {
+//        type: 'line'
+//    },
+//    title: {
+//        text: 'Project Analysis'
+//    },
+//    xAxis: {
+//        categories: cat,
+//        tickInterval: 4
+//    },
+//    yAxis: {
+//        title: {
+//            text: 'Progress'
+//        }
+//    },
+// tooltip: {
+//    formatter: function() {
+//        return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series '+ this.series.name;
+//    }
+//},
+//    plotOptions: {
+//        line: {
+//            dataLabels: {
+//                enabled: true
+//            },
+//            enableMouseTracking: true
+//        }
+//    },
+//    series: [{
+//        name: 'Planned',
+//        data: al
+//    }, {
+//        name: 'Actual',
+//        color: '#83f442',
+//        data: coml
+//    }]
+//});
+//          Highcharts.chart('container', {
+//
+//    chart: {
+//        scrollablePlotArea: {
+//            minWidth: 700
+//        }
+//    },
+//
+//    data: {
+//        csvURL: '<?php echo site_url(); ?>analytics1.csv',
+//        beforeParse: function (csv) {
+//            console.log(csv)
+//            return csv.replace(/\n\n/g, '\n');
+//        }
+//    },
+//
+//    title: {
+//        text: 'Project Analysis'
+//    },
+//
+//    xAxis: {
+//        tickInterval: 15 * 24 * 3600 * 1000, // one week
+//        tickWidth: 0,
+//        gridLineWidth: 1,
+//        labels: {
+//            align: 'left',
+//            x: 3,
+//            y: -3
+//        }
+//    },
+//
+//    yAxis: [{ // left y axis
+//        title: {
+//            text: null
+//        },
+//        labels: {
+//            align: 'left',
+//            x: 3,
+//            y: 16,
+//            format: '{value:.,0f}'
+//        }
+//    }],
+//
+//    legend: {
+//        align: 'left',
+//        verticalAlign: 'top',
+//        borderWidth: 0
+//    },
+//
+//    tooltip: {
+//        shared: true,
+//        crosshairs: true
+//    }
+//});
+//  var chart = new CanvasJS.Chart("container", {
+//	animationEnabled: true,
+//	theme: "light2",
+//	title:{
+//		text: "Project Analysis"
+//	},
+//	axisX:{
+//		valueFormatString: "DD MMM",
+//		crosshair: {
+//			enabled: true,
+//			snapToDataPoint: true
+//		}
+//	},
+//	axisY: {
+//		title: "Progress",
+//		crosshair: {
+//			enabled: true
+//		}
+//	},
+//	toolTip:{
+//		shared:true
+//	},  
+//	legend:{
+//		cursor:"pointer",
+//		verticalAlign: "bottom",
+//		horizontalAlign: "left",
+//		dockInsidePlotArea: true,
+//		itemclick: toogleDataSeries
+//	},
+//	data: [{
+//		type: "line",
+//		showInLegend: true,
+//		name: "Planned",
+//		markerType: "square",
+//		xValueFormatString: "DD MMM, YYYY",
+//		color: "#F08080",
+//		dataPoints:[al]
+//	},
+//	{
+//		type: "line",
+//		showInLegend: true,
+//		name: "Actual",
+//		dataPoints: [coml]
+//	}]
+//});
+//chart.render();
+//            function toogleDataSeries(e){
+//	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+//		e.dataSeries.visible = false;
+//	} else{
+//		e.dataSeries.visible = true;
+//	}
+//	chart.render();
+//}
+            }
+
+    }); //end Ajax
+    }
+
+
+
+
+    function get_dept_task_info(dept_id = '', project_id = ''){
+    $('#specific_dept_id').val(dept_id);
+    $('#department_details').show();
+    $('#project_department').hide();
+    //var test=$.inArray('1', user_role_array)
+
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/get_dept_task_list",
+            data:{'dept_id':dept_id, 'project_id':project_id},
+            dataType: "json",
+            success: function (data) {
+            var user_role = data.user_roles;
+            $('#user_role').val(user_role);
+            var user_role_array = user_role.split(',');
+            if (data.status == 'success'){
+            var dept_info = data.depertment_info[0].dept_name;
+            var progress = data.depertment_info[0].progress;
+            $('#specific_dept_name').html(dept_info);
+            $('#dept_progress_bar').html('<div class="progress-bar progress_dept_'+dept_id+'" role="progressbar" style="width: ' + progress + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(progress).toFixed(2) + '%</div>');
+            var str = '';
+            var j = 0;
+            $(data.tasks).each(function (i, v) {
+            j = j + 1;
+            if (v.sub_tasks != ''){
+            str += '<tr class="border-bottom-primary">';
+            str += '<td>' + j;
+            str += '<i id="expand_subtask_' + j + '" class="fa fa-plus" onclick="javascript:expandSubtask(' + j + ')"></i>';
+            str += ' <i style="display:none;" id="collapse_subtask_' + j + '"  class="fa fa-minus" onclick="javascript:collapseSubtask(' + j + ')"></i>';
+            str += '</td>';
+            str += '<td style="white-space:normal;" onclick="javascript:veiw_task(' + v.task_id + ');">';
+            
+            
+            str += '&nbsp;&nbsp;&nbsp;' + v.task_name;
+            str += '</td>';
+            str += '<td style="padding-left:20px !important" onclick="javascript:veiw_task(' + v.task_id + ');" id="startdate_' + v.task_id + '">' + ' ' + '</td>';
+            str += '<td onclick="javascript:veiw_task(' + v.task_id + ');" id="enddate_' + v.task_id + '">' + ' ' + '</td>';
+            str += '<td  onclick="javascript:veiw_task(' + v.task_id + ');">';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + v.task_id + '" role="progressbar" style="width: ' + v.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(v.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+//            str += '<td>';
+//            str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+//            str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:expandSubtask(' + j + ');"><i class="fa fa-plus"></i>Expand</a></li>';
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:veiw_task(' + v.task_id + ');"><i class="fa fa-eye"></i>View Details</a></li>';
+//            str += '</ul></div>';
+//            str += '</td>';
+            str += '</tr>';
+            var k = 0;
+            var I = 0;
+            $(v.sub_tasks).each(function (m, n) {
+
+            k = k + 1;
+            l = j + "." + k;
+            if (n.sub_sub_tasks != ''){
+
+            str += '<tr class="subtask' + j + ' border-bottom-primary" style="display:none;">';
+            str += '<td>' + j + "." + k; + '</td>';
+            str += '<td style="padding-left:1.9rem !important;">';
+            str += '<i id="expand_root_task_' + j + k + '" class="expand_root_task' + j + ' fa fa-plus" onclick="javascript:expandRoottask(' + j + ',' + k + ')"></i>';
+            str += '<i style="display:none;" id="collapse_root_task_' + j + k + '" class="collapse_root_task' + j + ' fa fa-minus" onclick="javascript:collapseRoottask(' + j + ',' + k + ')"></i>';
+            str += '&nbsp;&nbsp;&nbsp;' + n.task_name;
+            str += '</td>';
+            str += '<td id="startdate_' + n.task_id + '">' + ' ' + '</td>';
+            str += '<td id="enddate_' + n.task_id + '">' + ' ' + '</td>';
+            str += '<td>';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + n.task_id + '" role="progressbar" style="width: ' + n.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(n.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+            str += '<td>';
+            str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:expandRoottask(' + j + ',' + k + ');"><i class="fa fa-plus"></i>Expand</a></li>';
+            str += '</ul></div>';
+            str += '</td>';
+            str += '</tr>';
+            var a = 0;
+            $(n.sub_sub_tasks).each(function (o, p) {
+            a = a + 1;
+            b = j + "." + k + "." + a;
+            str += '<tr class="root_task roottask' + j + k + ' border-bottom-primary" style="display:none;">';
+            str += '<td style="">' + b + '</td>';
+            str += '<td  onclick="javascript:taskDetailsInfoSubtask(' + p.task_id + ')" style="padding-left:5.0rem !important;">' + p.task_name + '</td>';
+            str += '<td id="startdate_' + p.task_id + '">' + ' ' + '</td>';
+            str += '<td id="enddate_' + p.task_id + '">' + ' ' + '</td>';
+            str += '<td>';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + p.task_id + '" role="progressbar" style="width: ' + p.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(p.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+//            str += '<td>';
+//            str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+//            str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+//            if ($.inArray('4', user_role_array) > - 1){
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:update_task_status(' + p.task_id + ');"><i class="fa fa-edit"></i>Update Status</a></li>';
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:view_task_file(' + p.task_id + ');"><i class="fa fa-plus"></i>Upload File</a></li>';
+//            }
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:view_task_file(' + p.task_id + ');"><i class="fa fa-eye"></i>View Files</a></li>';
+//            str += '</ul></div>';
+//            str += '</td>';
+            str += '</tr>';
+            });
+            } else{
+            str += '<tr class="subtask' + j + ' border-bottom-primary" style="display:none;">';
+            str += '<td style="">' + l + '</td>';
+            str += '<td onclick="javascript:taskDetailsInfoSubtask(' + n.task_id + ')" style="padding-left:3.0rem !important;">' + n.task_name + '</td>';
+            str += '<td id="startdate_' + n.task_id + '">' + ' ' + '</td>';
+            str += '<td id="enddate_' + n.task_id + '">' + ' ' + '</td>';
+            str += '<td>';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + n.task_id + '" role="progressbar" style="width: ' + n.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(n.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+//            str += '<td>';
+//            str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+//            str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+//            if ($.inArray('4', user_role_array) > - 1){
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:update_task_status(' + n.task_id + ',' + n.parent_task_id + ');"><i class="fa fa-edit"></i>Update Status</a></li>';
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:view_task_file(' + n.task_id + ');"><i class="fa fa-plus"></i>Upload File</a></li>';
+//            }
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:view_task_file(' + n.task_id + ');"><i class="fa fa-eye"></i>View Files</a></li>';
+//            str += '</ul></div>';
+//            str += '</td>';
+            str += '</tr>';
+            }
+            });
+            } else{
+            str += '<tr class="subtask' + j + ' border-bottom-primary">';
+            str += '<td>' + j + '</td>';
+            str += '<td style="white-space:normal;" onclick="javascript:veiw_task(' + v.task_id + ');">' + v.task_name + '</td>';
+            str += '<td style="padding-left:10px !important" onclick="javascript:veiw_task(' + v.task_id + ');" id="startdate_' + v.task_id + '">' + ' ' + '</td>';
+            str += '<td onclick="javascript:veiw_task(' + v.task_id + ');" id="enddate_' + v.task_id + '">' + ' ' + '</td>';
+            str += '<td onclick="javascript:veiw_task(' + v.task_id + ');">';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + v.task_id + '" role="progressbar" style="width: ' + v.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(v.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+//            str += '<td>';
+//            str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+//            str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:veiw_task(' + v.task_id + ');"><i class="fa fa-eye"></i>View Details</a></li>';
+//            if ($.inArray('4', user_role_array) > - 1){
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:update_task_status(' + v.task_id + ');"><i class="fa fa-edit"></i>Update Status</a></li>';
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:view_task_file(' + v.task_id + ');"><i class="fa fa-plus"></i>Upload File</a></li>';
+//            }
+//            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:view_task_file(' + v.task_id + ');"><i class="fa fa-eye"></i>View Files</a></li>';
+//            str += '</ul></div>';
+//            str += '</td>';
+            str += '</tr>';
+            }
+
+            });
+            $('#dept_task_body').html(str);
+            $("td[id*='startdate_']").html('');
+            $("td[id*='enddate_']").html('');
+            $(data.data).each(function(r, w){
+            $('#startdate_' + w.task_id).html(dateToDMY(w.start_date));
+            $('#enddate_' + w.task_id).html(dateToDMY(w.end_date));
+            });
+            }
+            }
+    });
+    }
+
+    function expandSubtask(id = ''){
+    $('#expand_subtask_' + id).hide();
+    $('#collapse_subtask_' + id).show();
+    $('.subtask' + id).show();
+    }
+
+    function collapseSubtask(id = ''){
+    $('.expand_root_task' + id).show();
+    $('.collapse_root_task' + id).hide();
+    $('#expand_subtask_' + id).show();
+    $('#collapse_subtask_' + id).hide();
+    $('.subtask' + id).hide();
+    //$('.roottask'+id).hide();
+    $('.root_task').hide();
+    }
+
+    function expandRoottask(id = '', sub = ''){
+    $('#expand_root_task_' + id + sub).hide();
+    $('#collapse_root_task_' + id + sub).show();
+    $('.roottask' + id + sub).show();
+    }
+
+    function collapseRoottask(id = '', sub = ''){
+    $('#expand_root_task_' + id + sub).show();
+    $('#collapse_root_task_' + id + sub).hide();
+    $('.roottask' + id + sub).hide();
+    }
+    
+    function taskDetailsInfoSubtask(task_id){
+        veiw_task(task_id);
+        taskDetailsInfo(task_id);
+        viewExpandSubtask(1)
+        $('#view_expand_subtask_1').click();
+            $('#task_tree').find('.activeItem').removeClass("activeItem");
+    $('#task_name_'+task_id).addClass("activeItem");
+    }
+    
+    //Details task start
+    function veiw_task(task_id){
+    var dept_id = $('#specific_dept_id').val();
+    $('#file_task_id1').val('');
+    $('#file_task_id1').val(task_id);
+    
+    $('#dept_task_list').hide();
+    $('#add_remark').hide();
+    $('#html4_uploader').hide();
+    $('#html4_uploader1').hide();
+     var user_role = $('#user_role').val();
+    var user_role_array = user_role.split(',');
+    if ($.inArray('4', user_role_array) > - 1){
+    $('#html4_uploader').show();
+    $('#html4_uploader1').show();
+    } else{
+    $('#html4_uploader').hide();
+    $('#html4_uploader1').hide();
+    }
+    $('#dept_task_remark_body').html('');
+    $('#dept_task_status_body').html('');
+    $('#dept_task_files_body').html('');
+    $('#dept_task_details').show();
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/taskViewDetails",
+            data:{task_id:task_id, dept_id:dept_id},
+            dataType: "json",
+            success: function (data) {
+            var str = '';
+            var j = 0;
+            $(data.tasks).each(function (i, v) {
+            j = j + 1;
+            if (v.sub_tasks != ''){
+            str += '<tr class="border-bottom-primary">';
+            str += '<td>' + j + '</td>';
+            str += '<td style="white-space:normal;width:75%">';
+            str += '<i id="view_expand_subtask_' + j + '" class="fa fa-plus" onclick="javascript:viewExpandSubtask(' + j + ')"></i>';
+            str += ' <i style="display:none;" id="view_collapse_subtask_' + j + '"  class="fa fa-minus" onclick="javascript:viewCollapseSubtask(' + j + ')"></i>';
+            str += '&nbsp;&nbsp;&nbsp;<a style="padding:5px;" id="task_name_' + v.task_id + '" href="javascript:">';
+            str += v.task_name;
+            str += '</a>';
+            str += '</td>';
+            str += '<td style="width:15%;">';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + v.task_id + '" role="progressbar" style="width: ' + v.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(v.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+            str += '</tr>';
+            var k = 0;
+            var I = 0;
+            $(v.sub_tasks).each(function (m, n) {
+
+            k = k + 1;
+            l = j + "." + k;
+            if (n.sub_sub_tasks != ''){
+
+            str += '<tr class="view_subtask' + j + ' border-bottom-primary" style="display:none;">';
+            str += '<td onclick="javascript:taskDetailsInfo(' + n.task_id + ')">' + j + "." + k; + '</td>';
+            str += '<td style="padding-left:1.9rem !important;white-space:normal;width:75%">';
+            str += '<i id="view_expand_root_task_' + j + k + '" class="view_expand_root_task' + j + ' fa fa-plus" onclick="javascript:viewExpandRoottask(' + j + ',' + k + ')"></i>';
+            str += '<i style="display:none;" id="view_collapse_root_task_' + j + k + '" class="view_collapse_root_task' + j + ' fa fa-minus" onclick="javascript:viewCollapseRoottask(' + j + ',' + k + ')"></i>';
+            str += '&nbsp;&nbsp;&nbsp;<a style="padding:5px;" id="task_name_' + n.task_id + '" href="javascript:taskDetailsInfo(' + n.task_id + ')">';
+            str += n.task_name;
+            str += '</a>';
+            str += '</td>';
+
+            str += '<td onclick="javascript:taskDetailsInfo(' + n.task_id + ')" style="width:15%;">';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + n.task_id + '" role="progressbar" style="width: ' + n.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(n.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+            str += '</tr>';
+            var a = 0;
+            $(n.sub_sub_tasks).each(function (o, p) {
+            a = a + 1;
+            b = j + "." + k + "." + a;
+            str += '<tr class="view_root_task view_roottask' + j + k + ' border-bottom-primary" style="display:none;">';
+            str += '<td onclick="javascript:taskDetailsInfo(' + p.task_id + ')" style="">' + b + '</td>';
+            str += '<td onclick="javascript:taskDetailsInfo(' + p.task_id + ')" style="padding-left:5.0rem !important;width:75%;white-space:normal"><a style="padding:5px;" id="task_name_' + p.task_id + '" href="javascript:">' + p.task_name + '</a></td>';
+
+            str += '<td onclick="javascript:taskDetailsInfo(' + p.task_id + ')" style="width:15%;">';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + p.task_id + '" role="progressbar" style="width: ' + p.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(p.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+            str += '</tr>';
+            });
+            } else{
+            str += '<tr class="view_subtask' + j + ' border-bottom-primary" style="display:none;">';
+            str += '<td onclick="javascript:taskDetailsInfo(' + n.task_id + ')" style="">' + l + '</td>';
+            str += '<td onclick="javascript:taskDetailsInfo(' + n.task_id + ')" style="padding-left:3.0rem !important;width:75%;white-space:normal"><a style="padding:5px;" id="task_name_' + n.task_id + '" href="javascript:">' + n.task_name + '</a></td>';
+
+            str += '<td onclick="javascript:taskDetailsInfo(' + n.task_id + ')" style="width:15%;">';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + n.task_id + '" role="progressbar" style="width: ' + n.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(n.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+            str += '</tr>';
+            }
+            });
+            } else{
+            str += '<tr class="subtask' + j + ' border-bottom-primary">';
+            str += '<td onclick="javascript:taskDetailsInfo(' + v.task_id + ')">' + j + '</td>';
+            str += '<td style="white-space:normal;width:75%" onclick="javascript:taskDetailsInfo(' + v.task_id + ')"><a style="padding:5px;" id="task_name_' + v.task_id + '" href="javascript:">' + v.task_name + '</a></td>';
+
+            str += '<td onclick="javascript:taskDetailsInfo(' + v.task_id + ')" style="width:15%;">';
+            str += '<div class="progress">';
+            str += '<div class="progress-bar progress_task_' + v.task_id + '" role="progressbar" style="width: ' + v.percentage + '%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">' + parseFloat(v.percentage).toFixed(2) + '%</div>';
+            str += '</div>';
+            str += '</td>';
+            str += '</tr>';
+            }
+
+            });
+            $('#dept_task_detail_body').html(str);
+                    viewExpandSubtask(1)
+        $('#view_expand_subtask_1').click();
+            initiateUploader();
+                 function initiateUploader(){
+                        $("#html4_uploader1").pluploadQueue({
+                            // General settings
+                                runtimes : 'html4',
+                                url : "<?php echo site_url("moderator/image_upload/"); ?>",
+                                unique_names : true,
+                                multipart_params:{'task_id':$('#file_task_id1').val(), 'dept_id':$('#specific_dept_id').val()},
+                                filters : {
+                                    mime_types: [
+                                        {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+                {title : "Zip files", extensions : "zip"},
+                {title : "PDF files", extensions : "pdf"},
+                {title : "Drawing files", extensions : "dwg,mpp,ppt,pptx,ai,eps,psd"},
+                {title : "Excel files", extensions : "xlx,xlsx,csv"},
+                {title : "DOC files", extensions : "doc,docx"}
+                                    ]
+                               }
+
+
+                         });
+                         uploader1 = $('#html4_uploader1').pluploadQueue();
+   
+                        uploader1.bind("FileUploaded", function (up, file, response) {
+       
+                                $.extend(up.settings.multipart_params, {
+                                'task_id': $('#file_task_id').val(),
+                                        'dept_id': $('#specific_dept_id').val(),
+                                });
+                                var data = $.parseJSON(response.response);
+
+                                if (typeof (data.temp_file_path) != 'undefined' && data.temp_file_path != "") {
+                                    temp_file_paths.push(data.temp_file_path);
+                                }
+                                if (typeof (data.file_name) != 'undefined' && data.file_name != "") {
+                                    file_names.push(data.file_name);
+                                }
+                                var str = '';
+                                str += '<tr class="border-bottom-primary">';
+                                str += '<td style="width:50%;white-space:normal;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + data.file_name + '</td>';
+                                str += '<td style="width:10%;white-space:normal;">';
+                                str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                                str += '<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="<?php echo site_url(); ?>/' + data.unique_name + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+                                str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + data.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+                                str += '</ul></div>';
+                                str += '</td>';
+                                str += '</tr>';
+                                // $('#dept_task_files_body').append(str);
+                                $('#dept_task_files_body').append(str);
+                                initiateUploader();
+                             });
+    
+  
+                        
+                      
+                     }    
+            
+            }
+
+    }); //end Ajax
+    }
+    //Comment Add Start
+    function taskDetailsInfo(task_id = ''){
+    
+
+    var dept_id = $('#specific_dept_id').val();
+    $('#add_remark').hide();
+    $('#html4_uploader').hide();
+    $('#html4_uploader1').hide();
+    $('#dept_task_detail_body a').css("border", "none");
+    //$('#task_name_' + task_id).css("color", "blue");
+    $('#comment_task_id').val(task_id);
+    $('#file_task_id').val(task_id);
+    var user_role = $('#user_role').val();
+    var user_role_array = user_role.split(',');
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/taskDetailsInfo",
+            data:{task_id:task_id, dept_id:dept_id},
+            dataType: "json",
+            success: function (data) {
+
+            if (data.root_task != ''){
+            if ($.inArray('4', user_role_array) > - 1){
+
+            $('#add_remark').show();
+            $('#html4_uploader').show();
+            $('#html4_uploader1').show();
+            }
+
+            }
+            var str = '';
+            $(data.task_files).each(function (i, v) {
+            str += '<tr class="border-bottom-primary">';
+            str += '<td style="width:50%;white-space:normal;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + v.file_name + '</td>';
+            str += '<td style="width:10%;white-space:normal;">';
+            str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            //str+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:fileDownload('+v.file_id+');"><i class="fa fa-eye"></i>View Or Download</a></li>';
+            str += '<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="<?php echo site_url(); ?>/' + v.unique_name + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+            if ($.inArray('4', user_role_array) > - 1){
+            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + v.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+            }
+            str += '</ul></div>';
+            str += '</td>';
+            str += '</tr>';
+            });
+            $('#dept_task_files_body').html(str);
+            var str1 = '';
+            $(data.task_status).each(function (j, w) {
+              //  alert(w.status_name)
+                if(w.status_name!=null){
+           str1 += '<tr class="border-bottom-primary">';
+            if (w.status == "incomplete"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:red;" class="fa fa-hand-o-right" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style="color:red;">' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            } else if (w.status == "complete"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:green;" class="fa fa-thumbs-o-up" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style=color:green;>' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            } else if (w.status == "reset"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:blue;" class="fa fa-hand-paper-o" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style=color:blue;>' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            }
+            str1 += '<td style="width:10%">';
+            if (w.status == "incomplete"){
+
+             str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+              str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+//            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="completeStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" type="checkbox">';
+//            str1 += '<span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+//            str1 += '</div>';
+            str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:completeStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-trash"></i>Mark As Complete</a></li>';
+            }
+             str1+='</ul></div>';
+            } else if (w.status == "complete"){
+                                        str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                        str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+//            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="resetStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" checked type="checkbox">';
+//            str1 += '<span class="switch-label" data-on="Reset" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+//            str1 += '</div>';
+             str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:resetStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-eye"></i>Request For Reset</a></li>';
+            }
+              str1+='</ul></div>'; 
+            }
+//            str1 += '</td>';
+//            str1 += '</tr>';
+}
+            });
+            $('#dept_task_status_body').html(str1);
+            var str2 = '';
+            $(data.task_remarks).each(function (k, p) {
+
+            str2 += '<tr class="border-bottom-primary" id="comment_' + p.comment_id + '">';
+            str2 += '<td style="width:50%;white-space:normal;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + p.comment + '</td>';
+            str2 += '<td style="width:10%">';
+            str2 += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            str2 += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+            str2 += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:editRemark(' + p.task_id + ',' + p.comment_id + ');"><i class="fa fa-eye"></i>Update Remark</a></li>';
+            str2 += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:" onclick="deleteRemark(' + p.task_id + ',' + p.comment_id + ');"><i class="fa fa-eye"></i>Delete Remark</a></li>';
+            }
+            str2 += '</ul></div>';
+            str2 += '</td>';
+            str2 += '</tr>';
+            });
+            $('#dept_task_remark_body').html(str2);
+            }
+
+    }); //end Ajax
+        $('#task_tree').find('.activeItem').removeClass("activeItem");
+    $('#task_name_'+task_id).addClass("activeItem");
+    }
+    //Comment Add Start
+    $('#task_comment_discard').click(function(){
+    $("#comment").val('');
+    });
+    $('#task_comment_close').click(function(){
+    $("#comment").val('');
+    });
+    $('#comment_save').click(function(){
+    var dept_id = $('#specific_dept_id').val();
+    var task_id = $('#comment_task_id').val();
+    var comment = $('#comment').val();
+    var user_role = $('#user_role').val();
+    var user_role_array = user_role.split(',');
+    //alert('test');
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/addTaskComment",
+            data:{task_id:task_id, dept_id:dept_id, comment:comment},
+            dataType:"json",
+            success: function (data) {
+
+            if (data.status == "success"){
+            $('#comment').val('');    
+            var str2 = '';
+            $(data.task_remarks).each(function (k, p) {
+
+            str2 += '<tr class="border-bottom-primary" id="comment_' + p.comment_id + '">';
+            str2 += '<td style="width:50%;white-space:normal"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + p.comment + '</td>';
+            str2 += '<td style="width:10%">';
+            str2 += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            str2 += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+            str2 += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:editRemark(' + p.task_id + ',' + p.comment_id + ');"><i class="fa fa-eye"></i>Update Remark</a></li>';
+            str2 += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:" onclick="deleteRemark(' + p.task_id + ',' + p.comment_id + ');"><i class="fa fa-eye"></i>Delete Remark</a></li>';
+            }
+            str2 += '</ul></div>';
+            str2 += '</td>';
+            str2 += '</tr>';
+            });
+            $('#dept_task_remark_body').html(str2);
+            }
+            }
+    });
+    });
+    //Comment Add End 
+    //comment Update Start
+    function editRemark(task_id, comment_id){
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/commentInfo",
+            data:{comment_id:comment_id},
+            dataType:"json",
+            success: function (data) {
+            if (data.status == "success"){
+            var com_id = data.task_remark[0]['comment_id'];
+            var comment = data.task_remark[0]['comment'];
+            $('#edit_comment_task_id').val(task_id);
+            $('#edit_comment_id').val(com_id);
+            $('#edit_comment').val(comment);
+            $('#editCommentModal').modal('show');
+            }
+            }
+    });
+    }
+    async function deleteRemark(task_id, comment_id){
+    var r = confirm("Are you sure?");
+    if (r == true){
+    //var r_status = validate_password();
+     var r_status = await validate_password_b();
+    if (r_status == true){
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/deleteComment",
+            data:{comment_id:comment_id},
+            dataType:"json",
+            success: function (data) {
+            if (data.status == "success"){
+            $('#comment_' + comment_id).remove();
+            }
+            }
+    });
+    } else{
+    return false;
+    }
+    }
+    }
+
+
+    $('#edit_comment_close').click(function(){
+    $("#edit_comment").val('');
+    $('#edit_comment_id').val('');
+    });
+    $('#edit_comment_discard').click(function(){
+    $("#edit_comment").val('');
+    $('#edit_comment_id').val('');
+    });
+    $('#comment_update').click(function(){
+    var comment_id = $('#edit_comment_id').val();
+    var comment = $('#edit_comment').val();
+    var task_id = $('#edit_comment_task_id').val();
+    var dept_id = $('#specific_dept_id').val();
+    var user_role = $('#user_role').val();
+    var user_role_array = user_role.split(',');
+    //alert('test');
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/updateTaskComment",
+            data:{task_id:task_id, dept_id:dept_id, comment_id:comment_id, comment:comment},
+            dataType:"json",
+            success: function (data) {
+
+            if (data.status == "success"){
+            var str2 = '';
+            $(data.task_remarks).each(function (k, p) {
+
+            str2 += '<tr class="border-bottom-primary" id="comment_' + p.comment_id + '">';
+            str2 += '<td style="width:50%"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + p.comment + '</td>';
+            str2 += '<td style="width:10%">';
+            str2 += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            str2 += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            if ($.inArray('4', user_role_array) > - 1){
+            str2 += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:editRemark(' + p.task_id + ',' + p.comment_id + ');"><i class="fa fa-eye"></i>Update Remark</a></li>';
+            str2 += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:" onclick="deleteRemark(' + p.task_id + ',' + p.comment_id + ');"><i class="fa fa-eye"></i>Delete Remark</a></li>';
+            }
+            str2 += '</ul></div>';
+            str2 += '</td>';
+            str2 += '</tr>';
+            });
+            $('#dept_task_remark_body').html(str2);
+            }
+            }
+    });
+    });
+    //comment Update End
+
+
+    //Task File Upload Start
+    $('#task_file_discard').click(function(){
+    $("#file").val('');
+    });
+    $('#task_file_close').click(function(){
+    $("#file").val('');
+    });
+//               $("form#data").submit(function(e) {
+//                  // alert('test');
+//                    e.preventDefault();    
+//                    var formData = new FormData(this);
+//                    alert('test');
+//                    $.ajax({
+//                        url: "backend/moderator/addTaskFile",
+//                        type: 'POST',
+//                        data: formData,
+//                        success: function (data) {
+//                            alert(data)
+//                        },
+//                        cache: false,
+//                        contentType: false,
+//                        processData: false
+//                    });
+//            });
+    $('#file_save').click(function(){
+    var task_id = $('#file_task_id').val();
+    var task_file = $('#file').val();
+//                    var formData = new FormData(this);
+//                    alert(formData);
+//                    alert('test');
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/addTaskFile",
+            data:{task_id:task_id, task_file:task_file},
+            dataType:"json",
+            success: function (data) {
+
+            if (data.status == "success"){
+            var str = '';
+            $(data.task_files).each(function (i, v) {
+            str += '<tr class="border-bottom-primary">';
+            str += '<td style="width:50%"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + v.file_name + '</td>';
+            str += '<td style="width:10%">';
+            str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+            str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+            str += '<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="' + v.file_id + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+            str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + v.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+            str += '</ul></div>';
+            str += '</td>';
+            str += '</tr>';
+            });
+            $('#dept_task_files_body').html(str);
+            }
+            }
+    });
+    });
+    //Task File Upload End
+    function fileDownload(file_id = ''){
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/fileDownload",
+            data:{file_id:file_id},
+            dataType:"text",
+            success: function (data) {
+
+            if (data.status == "success"){
+
+            }
+            }
+    });
+    }
+
+    //Task File Download Start
+
+
+
+    //Task File Download End
+
+
+    function viewExpandSubtask(id = ''){
+    $('#view_expand_subtask_' + id).hide();
+    $('#view_collapse_subtask_' + id).show();
+    $('.view_subtask' + id).show();
+    }
+
+    function viewCollapseSubtask(id = ''){
+    $('.view_expand_root_task' + id).show();
+    $('.view_collapse_root_task' + id).hide();
+    $('#view_expand_subtask_' + id).show();
+    $('#view_collapse_subtask_' + id).hide();
+    $('.view_subtask' + id).hide();
+    //$('.roottask'+id).hide();
+    $('.view_root_task').hide();
+    }
+
+    function viewExpandRoottask(id = '', sub = ''){
+    $('#view_expand_root_task_' + id + sub).hide();
+    $('#view_collapse_root_task_' + id + sub).show();
+    $('.view_roottask' + id + sub).show();
+    }
+
+    function viewCollapseRoottask(id = '', sub = ''){
+    $('#view_expand_root_task_' + id + sub).show();
+    $('#view_collapse_root_task_' + id + sub).hide();
+    $('.view_roottask' + id + sub).hide();
+    }
+
+    async function completeStatus(task_id = '', status_id = ''){
+    var r = confirm("Are you sure?");
+    if (r == true){
+    //var r_status = validate_password();
+     var r_status = await validate_password_b();
+    if (r_status == true){
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/completeStatus",
+            data:{task_id:task_id, status_id:status_id},
+            dataType:"json",
+            success: function (data) {
+
+            if (data.status == "success"){
+                var dept_task = data.dept_task;
+               // alert(data.t_progress);
+              //  alert($('.progress_task_'+dept_task.task_id).attr('style'))
+                $('.progress_project_'+dept_task.project_id).attr('style','width:'+parseFloat(data.p_progress).toFixed(2)+'%');
+                $('.progress_project_'+dept_task.project_id).html(parseFloat(data.p_progress).toFixed(2)+'%');
+                $('.progress_dept_'+dept_task.dept_id).attr('style','width:'+parseFloat(data.d_progress).toFixed(2)+'%');
+                $('.progress_dept_'+dept_task.dept_id).html(parseFloat(data.d_progress).toFixed(2)+'%');
+                $('.progress_task_'+dept_task.task_id).attr('style','width:'+parseFloat(data.t_progress).toFixed(2)+'%');
+                $('.progress_task_'+dept_task.task_id).html(parseFloat(data.t_progress).toFixed(2)+'%');
+            var str1 = '';
+            $(data.task_status).each(function (j, w) {
+                if(w.status_name!=null){
+            str1 += '<tr class="border-bottom-primary">';
+            if (w.status == "incomplete"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:red;" class="fa fa-hand-o-right" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style="color:red;">' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            } else if (w.status == "complete"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:green;" class="fa fa-thumbs-o-up" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style=color:green;>' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            } else if (w.status == "reset"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:blue;" class="fa fa-hand-paper-o" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style=color:blue;>' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            }
+            str1 += '<td style="width:10%">';
+            if (w.status == "incomplete"){
+                                                   str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                                   str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                                                   str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:completeStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-trash"></i>Mark As Complete</a></li>';
+                                                   str1+='</ul></div>';
+//            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="completeStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" type="checkbox">';
+//            str1 += '<span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+//            str1 += '</div>';
+            } else if (w.status == "complete"){
+                                                   str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                                   str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                                                   str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:resetStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-eye"></i>Request For Reset</a></li>';
+                                                   str1+='</ul></div>'; 
+//            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="resetStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" checked type="checkbox">';
+//            str1 += '<span class="switch-label" data-on="Reset" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+//            str1 += '</div>';
+            }
+            str1 += '</td>';
+            str1 += '</tr>';
+                }
+            });
+            $('#dept_task_status_body').html(str1);
+            }
+            }
+    });
+    }
+    }
+    }
+
+    async function resetStatus(task_id = '', status_id = ''){
+    var dept_id = $('#specific_dept_id').val();
+    var r = confirm("Are you sure?");
+    if (r == true){
+    //var r_status = validate_password();
+     var r_status = await validate_password_b();
+    if (r_status == true){
+    $('#reset_task_id').val(task_id);
+    $('#reset_status_id').val(status_id);
+    $('#reset_reason_id').val('');
+    $('#reset_request_modal').modal('show');
+    }
+    }
+    }
+
+
+
+    $('#save_reset_request').click(function(){
+    var dept_id = $('#specific_dept_id').val();
+    var task_id = $('#reset_task_id').val();
+    var status_id = $('#reset_status_id').val();
+    var reason = $('#reset_reason_id').val();
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/resetStatus",
+            data:{task_id:task_id, status_id:status_id, dept_id:dept_id, reason:reason},
+            dataType:"json",
+            success: function (data) {
+            $('#reset_task_id').val('');
+            $('#reset_status_id').val('');
+            $('#reset_reason_id').val('');
+            if (data.status == "success"){
+
+            var str1 = '';
+            $(data.task_status).each(function (j, w) {
+                if(w.status_name!=null){
+            str1 += '<tr class="border-bottom-primary">';
+          if (w.status == "incomplete"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:red;" class="fa fa-hand-o-right" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style="color:red;">' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            } else if (w.status == "complete"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:green;" class="fa fa-thumbs-o-up" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style=color:green;>' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            } else if (w.status == "reset"){
+            str1 += '<td style="width:50%;white-space:normal"><div class="col-sm-2 col-md-2 pull-left"><i style="color:blue;" class="fa fa-hand-paper-o" aria-hidden="true"></i></div><div class="col-sm-10 col-md-10 pull-right"><span style=color:blue;>' + (w.status_name) + '<span></div><div class="clearfix"></div></td>';
+            }
+            str1 += '<td style="width:10%">';
+            if (w.status == "incomplete"){
+                                                   str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                                   str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                                                   str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:completeStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-trash"></i>Mark As Complete</a></li>';
+                                                   str1+='</ul></div>';
+//            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="completeStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" type="checkbox">';
+//            str1 += '<span class="switch-label" data-on="On" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+//            str1 += '</div>';
+            } else if (w.status == "complete"){
+                                                   str1+=' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+                                                   str1+='<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+                                                   str1+='<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:resetStatus('+w.task_id+','+w.dept_task_status_id+');"><i class="fa fa-eye"></i>Request For Reset</a></li>';
+                                                   str1+='</ul></div>'; 
+//            str1 += '<div class="anil_nepal"><label class="switch switch-left-right" ><input onclick="resetStatus(' + w.task_id + ',' + w.dept_task_status_id + ');" class="switch-input" checked type="checkbox">';
+//            str1 += '<span class="switch-label" data-on="Reset" data-off="Off"></span> <span class="switch-handle"></span> </label>';
+//            str1 += '</div>';
+            }
+            str1 += '</td>';
+            str1 += '</tr>';
+                }
+            });
+            $('#dept_task_status_body').html(str1);
+            }
+            }
+    });
+    });
+    async function deleteRequest(file_id = ''){
+
+    var dept_id = $('#specific_dept_id').val();
+    var r = confirm("Are you sure to delete this file?");
+    if (r == true){
+    //var r_status = validate_password();
+     var r_status = await validate_password_b();
+    if (r_status == true){
+    //  alert(file_id);
+    $('#delete_file_id').val(file_id);
+    $('#delete_reason_id').val('');
+    $('#delete_file_request_modal').modal('show');
+    }
+    }
+    }
+
+    $('#save_delete_request').click(function(){
+    var dept_id = $('#specific_dept_id').val();
+    var file_id = $('#delete_file_id').val();
+    var reason = $('#delete_reason_id').val();
+    $.ajax({
+    type:"POST",
+            url:"backend/moderator/requestForDeleteFile",
+            data:{file_id:file_id, dept_id:dept_id, reason:reason},
+            dataType:"json",
+            success: function (data) {
+
+            $('#delete_file_id').val('');
+            $('#delete_reason_id').val('');
+            if (data.status == "success"){
+            alert('Successfully Request Sent');
+            }
+            }
+    });
+    });
+    //Details task end
+    async function make_as_complete(project_id){
+       var r_status = await validate_password_b();  
+        if (r_status){
+            location.href = '<?php echo site_url('moderator/make_as_complete/'); ?>/' + project_id
+        }
+    }
+
+    var highestBox = 0;
+    $('#dept_task_details').find('.common-height').each(function(){
+    if ($('.common-height').height() > highestBox){
+    highestBox = $('.common-height').height();
+    }
+
+    })
+            $('#dept_task_details').find('.common-height').height(highestBox);
+
+
+
+
+
+</script>
+<!--PL Uploader Start-->
+<script type="text/javascript">
+var uploader;
+var temp_file_paths = new Array();
+var file_names = new Array();
+var temp_name;   
+
+$(function() {
+    // Setup flash version
+    $("#flash_uploader").pluploadQueue({
+        // General settings
+        runtimes : 'flash',
+        url : "/examples/upload",
+        chunk_size : '1mb',
+        unique_names : true,
+         
+        filters : {
+            max_file_size : '10mb',
+            mime_types: [
+                {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+                {title : "Zip files", extensions : "zip"},
+                {title : "PDF files", extensions : "pdf"},
+                {title : "Drawing files", extensions : "dwg,mpp,ppt,pptx,ai,eps,psd"},
+                {title : "Excel files", extensions : "xlx,xlsx,csv"},
+                {title : "DOC files", extensions : "doc,docx"}
+            ]
+        },
+ 
+        // Resize images on clientside if we can
+        resize : {width : 320, height : 240, quality : 90},
+ 
+        // Flash settings
+        flash_swf_url : '/plupload/js/Moxie.swf'
+    });
+ 
+ 
+    // Setup silverlight version
+    $("#silverlight_uploader").pluploadQueue({
+        // General settings
+        runtimes : 'silverlight',
+        url : "/examples/upload",
+        chunk_size : '1mb',
+        unique_names : true,
+         
+        filters : {
+            max_file_size : '10mb',
+            mime_types: [
+                {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+                {title : "Zip files", extensions : "zip"},
+                {title : "PDF files", extensions : "pdf"},
+                {title : "Drawing files", extensions : "dwg,mpp,ppt,pptx,ai,eps,psd"},
+                {title : "Excel files", extensions : "xlx,xlsx,csv"},
+                {title : "DOC files", extensions : "doc,docx"}
+            ]
+        },
+ 
+        // Resize images on clientside if we can
+        resize : {width : 320, height : 240, quality : 90},
+ 
+        // Silverlight settings
+        silverlight_xap_url : '/plupload/js/Moxie.xap'
+    });
+ 
+    // Setup html5 version
+    $("#html5_uploader").pluploadQueue({
+        // General settings
+        runtimes : 'html5',
+        url : "/examples/upload",
+        chunk_size : '1mb',
+        unique_names : true,
+         
+        filters : {
+            max_file_size : '10mb',
+            mime_types: [
+               {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+                {title : "Zip files", extensions : "zip"},
+                {title : "PDF files", extensions : "pdf"},
+                {title : "Drawing files", extensions : "dwg,mpp,ppt,pptx,ai,eps,psd"},
+                {title : "Excel files", extensions : "xlx,xlsx,csv"},
+                {title : "DOC files", extensions : "doc,docx"}
+            ]
+        },
+ 
+        // Resize images on clientside if we can
+        resize : {width : 320, height : 240, quality : 90}
+    });
+  initiateUploader();
+  function initiateUploader(){
+    // Setup html4 version
+    $("#html4_uploader").pluploadQueue({
+        // General settings
+        runtimes : 'html4',
+        url : "<?php echo site_url("moderator/image_upload/"); ?>",
+        unique_names : true,
+        multipart_params:{'task_id':$('#file_task_id').val(), 'dept_id':$('#specific_dept_id').val()},
+        filters : {
+            mime_types: [
+               {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+                {title : "Zip files", extensions : "zip"},
+                {title : "PDF files", extensions : "pdf"},
+                {title : "Drawing files", extensions : "dwg,mpp,ppt,pptx,ai,eps,psd"},
+                {title : "Excel files", extensions : "xlx,xlsx,csv"},
+                {title : "DOC files", extensions : "doc,docx"}
+            ]
+        }
+       
+      
+    });
+    
+    $("#html4_uploader1").pluploadQueue({
+        // General settings
+        runtimes : 'html4',
+        url : "<?php echo site_url("moderator/image_upload/"); ?>",
+        unique_names : true,
+        multipart_params:{'task_id':$('#file_task_id').val(), 'dept_id':$('#specific_dept_id').val()},
+        filters : {
+            mime_types: [
+                {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+                {title : "Zip files", extensions : "zip"},
+                {title : "PDF files", extensions : "pdf"},
+                {title : "Drawing files", extensions : "dwg,mpp,ppt,pptx,ai,eps,psd"},
+                {title : "Excel files", extensions : "xlx,xlsx,csv"},
+                {title : "DOC files", extensions : "doc,docx"}
+            ]
+        }
+       
+      
+    });
+  
+   
+   uploader = $('#html4_uploader').pluploadQueue();
+   uploader1 = $('#html4_uploader1').pluploadQueue();
+   uploader.bind("FileUploaded", function (up, file, response) {
+       
+        $.extend(up.settings.multipart_params, {
+        'task_id': $('#file_task_id').val(),
+                'dept_id': $('#specific_dept_id').val(),
+        });
+        var data = $.parseJSON(response.response);
+
+        if (typeof (data.temp_file_path) != 'undefined' && data.temp_file_path != "") {
+            temp_file_paths.push(data.temp_file_path);
+        }
+        if (typeof (data.file_name) != 'undefined' && data.file_name != "") {
+            file_names.push(data.file_name);
+        }
+        var str = '';
+        str += '<tr class="border-bottom-primary">';
+        str += '<td style="width:50%;white-space:normal;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + data.file_name + '</td>';
+        str += '<td style="width:10%;white-space:normal;">';
+        str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+        str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+        str += '<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="<?php echo site_url(); ?>/' + data.unique_name + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+        str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + data.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+        str += '</ul></div>';
+        str += '</td>';
+        str += '</tr>';
+        // $('#dept_task_files_body').append(str);
+        $('#dept_task_details_file_body').append(str);
+        initiateUploader();
+    });
+    
+   uploader1.bind("FileUploaded", function (up, file, response) {
+       
+        $.extend(up.settings.multipart_params, {
+        'task_id': $('#file_task_id').val(),
+                'dept_id': $('#specific_dept_id').val(),
+        });
+        var data = $.parseJSON(response.response);
+
+        if (typeof (data.temp_file_path) != 'undefined' && data.temp_file_path != "") {
+            temp_file_paths.push(data.temp_file_path);
+        }
+        if (typeof (data.file_name) != 'undefined' && data.file_name != "") {
+            file_names.push(data.file_name);
+        }
+        var str = '';
+        str += '<tr class="border-bottom-primary">';
+        str += '<td style="width:50%;white-space:normal;"><i style="padding:5px;"  class="fa fa-file-archive-o"></i>' + data.file_name + '</td>';
+        str += '<td style="width:10%;white-space:normal;">';
+        str += ' <div class="dropdown"> <i class="  fa fa-cogs" data-toggle="dropdown"></i>';
+        str += '<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">';
+        str += '<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank" href="<?php echo site_url(); ?>/' + data.unique_name + '"><i class="fa fa-eye"></i>View Or Download</a></li>';
+        str += '<li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:deleteRequest(' + data.file_id + ');"><i class="fa fa-trash"></i>Request For Delete</a></li>';
+        str += '</ul></div>';
+        str += '</td>';
+        str += '</tr>';
+        // $('#dept_task_files_body').append(str);
+        $('#dept_task_files_body').append(str);
+        initiateUploader();
+    }); 
+    
+    
+}   
+    
+    
+});
+</script>
+
+<script>
+// function deptChart(){
+//     var project_and_dept=$('#dept_drop_down').val();
+//    
+//     if(project_and_dept!=''){
+//          var res = project_and_dept.split(",");
+//          var dept_id=res[0];
+//          var project_id=res[1];
+//          if(dept_id==0){
+//              get_project_dept_info(project_id,<?php echo $this->user_id; ?>);
+//              return false;
+//          }
+//          $.ajax({
+//           type:"POST",
+//               url:"backend/moderator/deptTaskProgressInfo",
+//               data:{project_id:project_id, dept_id:dept_id},
+//               dataType: "json",
+//               success: function (data) {
+//                    
+//                var al = '';
+//                al = data.all; 
+//                var cat = data.cat; 
+//                var coml = '';
+//                coml = data.completed; 
+//
+//          Highcharts.chart('container', {
+//    chart: {
+//        type: 'line'
+//    },
+//    title: {
+//        text: 'Project Analysis for department'
+//    },
+//    xAxis: {
+//        categories: cat,
+//        tickInterval: 1
+//    },
+//    yAxis: {
+//        title: {
+//            text: 'Progress'
+//        }
+//    },
+// tooltip: {
+//    formatter: function() {
+//        return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series '+ this.series.name;
+//    }
+//},
+//    plotOptions: {
+//        line: {
+//            dataLabels: {
+//                enabled: true
+//            },
+//            enableMouseTracking: true
+//        }
+//    },
+//    series: [{
+//        name: 'Planned',
+//        data: al
+//    }, {
+//        name: 'Actual',
+//         color: '#83f442',
+//        data: coml
+//    }]
+//});
+                   
+                   
+                   
+//
+//               var strc='';
+//               $(data.project_tasks).each(function (m, n) {
+//                   if(m==0){
+//                       strc +=n.end_date+','+n.percentage+','+'100';   
+//                   }else{
+//                       strc +=',\n'+n.end_date+','+n.percentage+','+'100';   
+//                   }    
+//               });
+//               $('#chartdata').html(strc);
+//               Highcharts.chart('container', {
+//
+//                       chart: {
+//                           scrollablePlotArea: {
+//                               minWidth: 700
+//                           }
+//                       },
+//
+//                       data: {csv:document.getElementById('chartdata').innerHTML},
+//
+//                       title: {
+//                           text: 'Department Analysis '
+//                       },
+//
+//                       subtitle: {
+//                           text: ' '
+//                       },
+//
+//                       xAxis: {
+//                           tickInterval: 7 * 24 * 3600 * 1000, // one week
+//                           tickWidth: 0,
+//                           gridLineWidth: 1,
+//                           labels: {
+//                               align: 'left',
+//                               x: 3,
+//                               y: -3
+//                           }
+//                       },
+//
+//                       yAxis: [{ // left y axis
+//                           title: {
+//                               text: null
+//                           },
+//                           labels: {
+//                               align: 'left',
+//                               x: 3,
+//                               y: 16,
+//                               format: '{value:.,0f}'
+//                           },
+//                           showFirstLabel: false
+//                       }, { // right y axis
+//                           linkedTo: 0,
+//                           gridLineWidth: 0,
+//                           opposite: true,
+//                           title: {
+//                               text: null
+//                           },
+//                           labels: {
+//                               align: 'right',
+//                               x: -3,
+//                               y: 16,
+//                               format: '{value:.,0f}'
+//                           },
+//                           showFirstLabel: false
+//                       }],
+//
+//                       legend: {
+//                           align: 'left',
+//                           verticalAlign: 'top',
+//                           borderWidth: 0
+//                       },
+//
+//                       tooltip: {
+//                           shared: true,
+//                           crosshairs: true
+//                       },
+//
+//                       plotOptions: {
+//                           series: {
+//                               cursor: 'pointer',
+//                               point: {
+//                                   events: {
+//                                       click: function (e) {
+//                                           hs.htmlExpand(null, {
+//                                               pageOrigin: {
+//                                                   x: e.pageX || e.clientX,
+//                                                   y: e.pageY || e.clientY
+//                                               },
+//                                               headingText: this.series.name,
+//                                               maincontentText: Highcharts.dateFormat('%A, %b %e, %Y', this.x) + ':<br/> ' +
+//                                                   this.y + ' sessions',
+//                                               width: 200
+//                                           });
+//                                       }
+//                                   }
+//                               },
+//                               marker: {
+//                                   lineWidth: 1
+//                               }
+//                           }
+//                       },
+//
+//                       series: [{
+//                           name: 'All sessions',
+//                           lineWidth: 4,
+//                           marker: {
+//                               radius: 4
+//                           }
+//                       }, {
+//                           name: 'New users'
+//                       }]
+//                   });
+//
+//
+
+//               }
+//
+//           }); //end Ajax
+//     }    
+// }
+
+</script>
+<style>
+    .highcharts-credits,.canvasjs-chart-credit{
+        display:none !important;
+    }
+</style>

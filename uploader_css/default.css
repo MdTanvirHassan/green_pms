@@ -1,0 +1,487 @@
+form {
+    margin: 0;
+    padding: 0;
+}
+
+.remote {
+    width: 563px;
+    height: 311px;
+    text-align: left;
+    background: url(images/upload/upload_bg.png);
+    position: relative;
+}
+
+.up_add {
+    width: 525px;
+    height: 34px;
+    border-bottom: 1px solid #d2d4d8;
+    border-top: 1px solid #b6bac0;
+    background: url(images/upload/up_add_bg.png);
+    padding: 19px 0 0 38px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.add_btn {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.idle {
+    display: block;
+    z-index: 2;
+}
+
+.progressing {
+    display: none;
+    z-index: 5;
+}
+
+.up_add_left {
+    width: 371px;
+    height: 31px;
+    float: left;
+}
+
+.up_add_left input {
+    width: 359px;
+    height: 31px;
+    background: url(images/upload/up_input.png) no-repeat;
+    font: 11px/31px arial;
+    color: #666666;
+    padding-left: 12px;
+    border: none;
+}
+
+.up_add_right {
+    width: 114px;
+    height: 31px;
+    float: left;
+}
+
+.uploader_home {
+    width: 563px;
+    height: 255px;
+    border-top: 1px solid #fff;
+    position: absolute;
+    top: 55px;
+    left: 0;
+}
+
+div#fsUploadProgress {
+    width: 563px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    background: url(images/upload/upload_bg.png);
+    height: 255px;
+    text-align: left;
+}
+
+.up_image {
+    width: 56px;
+    height: 56px;
+    margin: 49px 0 25px 264px;
+}
+
+.inp_remote {
+    height: 33px;
+    text-align: center;
+    font: 18px 'Segoe UI';
+    color: #7d7d7d;
+}
+
+.max_allowed {
+    height: 20px;
+    text-align: center;
+    font: 12px 'Segoe UI';
+    color: #b1b1b1;
+}
+
+.local_up_image {
+    width: 54px;
+    height: 50px;
+    margin: 46px auto 34px;
+    background: url(images/upload/local_upload.png) no-repeat;
+}
+
+.local_cancel {
+    width: 79px;
+    height: 16px;
+    float: left;
+    margin: 0 0 0 322px;
+}
+
+.btnCancel {
+    background: url(images/upload/cnacel_btn.png);
+    width: 79px;
+    height: 16px;
+    display: block;
+}
+
+.btnCancel.disable {
+    filter: alpha(opacity =   30);
+    opacity: 0.3;
+    cursor: default;
+}
+
+.add_more {
+    width: 75px;
+    height: 16px;
+    float: left;
+    margin: 0 0 0 30px;
+    background: url(images/upload/add_more_btn.png) no-repeat;
+}
+
+.browse_btn {
+	
+	position: relative;
+	width: 186px;
+	background-color: #73B4FF;
+	border-radius: 23px;
+}
+/*.browse_btn {
+    background: #00acac none repeat scroll 0 0;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 15px;
+    overflow: hidden;
+    padding: 7px;
+    position: relative;
+    text-align: center;
+    width: 120px;
+    z-index: 500;
+}*/
+.browse_btn a {
+	
+	color: #fff;
+	text-align: center;
+	padding: 4px 14px;
+	font-size: 14px;
+}
+.browse_btn a:hover{
+    background-color:#1B75BB;
+    border-radius: 23px;
+}
+.browse_btn input {
+    opacity: 0;
+    filter: alpha(opacity =       0);
+    position: absolute;
+    -moz-transform: translate(-300px, 0pt) scale(4);
+    cursor: pointer;
+}
+
+ul.plupload_filelist {
+    margin: 0;
+    padding: 0;
+}
+
+.plupload_start {
+    display: none;
+}
+
+.upload_total_block {
+    position: relative;
+    height: 17px;
+    width: 550px;
+    display: none;
+    font: 11px "Segoe UI";
+    line-height: 17px;
+    color: #6b6b6b;
+    margin-top:60px;
+    /*    text-shadow: 1px 1px #FFFFFF;*/
+}
+
+.plupload_clearer {
+    display: none;
+}
+
+.plupload_done,.plupload_failed {
+    display: none;
+}
+
+.progressContainer {
+    width: 523px;
+    height: 65px;
+    background: url(images/upload/border_bottom.gif) repeat-x bottom;
+    padding: 11px 0 0 40px;
+    position: relative;
+    list-style: none;
+    margin: 0;
+}
+
+.progressName {
+    width: 395px;
+    height: 20px;
+    font: 12px 'Segoe UI';
+    color: #1b1b1b;
+}
+
+.progressBarContainer {
+    width: 395px;
+    height: 14px;
+    background: url(images/upload/up_progress.gif) repeat-x;
+    margin-top: 2px;
+}
+
+.progressBarInProgress,.progressBarComplete,.progressBarError {
+    width: 0%;
+    height: 14px;
+    background-color: #6dac60;
+}
+
+.progressPercent {
+    width: auto;
+    height: 20px;
+    position: absolute;
+    top: 31px;
+    left: 458px;
+    font: 12px 'Segoe UI';
+    color: #1b1b1b;
+}
+
+.progressUploading {
+    width: auto;
+    height: 20px;
+    position: absolute;
+    top: 52px;
+    left: 42px;
+    font: 11px 'Segoe UI';
+    color: #7f7f7f;
+}
+
+.progressTimeRemaining {
+    width: 200px;
+    text-align: right;
+    height : 20px;
+    position: absolute;
+    top: 52px;
+    right: 167px;
+    font: 11px 'Segoe UI';
+    color: #7f7f7f;
+    height: 20px;
+}
+
+.progressSpeed {
+    width: auto;
+    height: 20px;
+    position: absolute;
+    top: 52px;
+    display: none;
+    right: 127px;
+    font: 11px 'Segoe UI';
+    color: #7f7f7f;
+}
+
+.progressBarStatus {
+    margin-top: 2px;
+    width: 337px;
+    font-size: 7pt;
+    font-family: Arial;
+    text-align: left;
+    white-space: nowrap;
+    display: none;
+}
+
+.progressBarComplete {
+    width: 100%;
+}
+
+#spanButtonPlaceHolder {
+    width: 126px;
+    height: 31px;
+}
+.message_pre {
+    position: relative;
+    background: #d2d6de !important;
+    color: #444;
+}
+.message {
+    border-radius: 5px;
+    position: relative;
+    padding: 5px 10px;
+    background: #d2d6de;
+    border: 1px solid #d2d6de;
+    margin: 5px 0 0 50px;
+    color: #444;
+    margin-top: -35px !important;
+}
+.message::before{
+    position: absolute;
+    right: 100%;
+    top: 15px;
+    border: solid transparent;
+    border-right-color: #d2d6de;
+    content: ' ';
+    height: 0;
+    width: 0;
+    pointer-events: none;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
+.red {
+    border: solid 1px #B50000;
+    background-color: #FFEBEB;
+}
+
+.progressCancel,.progressComplete {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 33px;
+    left: 507px;
+}
+
+.progressCancel {
+    background: url(images/upload/cross.png);
+}
+
+.progresscomplete {
+    background: url(images/upload/accept.png) no-repeat;
+}
+
+.up_status {
+    width: auto;
+    height: 20px;
+    font: 11px 'Segoe UI';
+    color: #7f7f7f;
+    text-align: left;
+    margin: 2px 0 0 22px;
+}
+
+#divStatus {
+    display: none;
+}
+
+#onscreen_uploader{position: relative; width: auto; height: auto; background: none; }
+#onscreen_uploader1{position: relative; width: auto; height: auto; background: none; }
+.idle.uploader_home,.idle.up_add,.plupload_button.plupload_start{display: none; width: 0; height: 0; font-size: 0; line-height: 0; overflow: hidden;}
+
+#onscreen_uploader .remote{ width:auto; height:auto; text-align:left; background:none;}
+#onscreen_uploader1 .remote{ width:auto; height:auto; text-align:left; background:none;}
+
+
+div#fsUploadProgress {
+    background: none;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: left;
+    border-top: none;
+    height: auto;
+    width: auto;
+    position: absolute;
+    /*    top: -56px;*/
+    /*    left: 257px;*/
+    top: 0px;
+    left: 130px;
+}
+
+#onscreen_uploader_filelist{
+    display: none;select
+}
+#onscreen_uploader1_filelist{
+    display: none;select
+}
+
+.upload_total_block{
+    display: block;
+}
+
+.upload_status{
+    width: 128px;
+    text-transform: uppercase;
+    height: 17px;
+    border-right: 1px solid #c4c6ca;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.plupload_file_size{
+    width: 120px;
+    height: 17px;
+    border-right: 1px solid #c4c6ca;
+    border-left: 1px solid #f8f8f8;
+    position: absolute;
+    top: 0;
+    left: 129px;
+    text-align: center;
+}
+
+.plupload_progress{
+    width: 170px;
+    height: 17px;
+    border-left: 1px solid #f8f8f8;
+    position: absolute;
+    top: 0;
+    left: 251px;
+    padding: 0 17px 0 18px;
+}
+
+.plupload_file_status{
+    width: 50px;
+    height: 17px;
+    border-right: 1px solid #c4c6ca;
+    position: absolute;
+    top: 0;
+    left: 443px;
+    text-align: center;
+}
+
+/*.plupload_clearer{
+    width: 49px;
+    display: block;
+    height: 17px;
+    padding-right: 2px;
+    border-left: 1px solid #f8f8f8;
+    position: absolute;
+    top: 0;
+    left: 494px;
+    text-align: right;
+    overflow: hidden;
+}*/
+.plupload_clearer {
+    background: #00acac none repeat scroll 0 0;
+    border-left: 1px solid #f8f8f8;
+    display: block;
+    left: 494px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 49px;
+}
+
+.plupload_clearer a.startstopBtn{
+    text-decoration: none;
+    color: #fff;
+    /*    text-shadow: 1px 1px #FFFFFF;*/
+    background: none;
+    width: 49px;
+    display: block;
+    height: 17px;
+    float: none;
+}
+.plupload_clearer a.btnCancel{
+    display: none;
+}
+
+.progressBarContainer{
+    width: 170px;
+}
+
+ul.plupload_filelist{
+    height: 180px;
+}
+
+
+@media screen and (max-width:1252px) {
+    div#fsUploadProgress {
+        left: 257px;
+    }
+}
