@@ -23,7 +23,7 @@ $config['base_url'] = '';
 if (ENVIRONMENT == 'development') {
     $config['fb_app_id'] = '1410997685834926';
     $config['fb_app_secret'] = "f4fb375d08c6d9dd3b7da880c2de3dac";
-    $config['site_url'] = 'http://localhost/fanfood/';
+    $config['site_url'] = 'https://4axiz.com/';
     $config['form_email'] = 'shaheen@4axiz.com';
     
     // Payeezy api credintial
