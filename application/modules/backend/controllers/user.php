@@ -453,7 +453,9 @@ left join users u on u.user_id=dt.moderator where t.project_id=$project_id and d
         $project_id = $this->input->post('project_id');
         $dept_id = $this->input->post('dept_id');
         $task_id = $this->input->post('task_id');
+        
         $t=$this->m_common->customeQuery("SELECT t.task_name, dt.* FROM task as t RIGHT JOIN department_task as dt ON t.task_id=dt.task_id WHERE dt.project_id=$project_id AND dt.dept_id=$dept_id AND t.task_id=$task_id");
+        // echo $this->db->last_query();exit;
         //$t = $this->m_common->get_row_array('department_task', array('project_id' => $project_id, 'dept_id' => $dept_id, 'task_id' => $task_id), '*');
         $data['taskvalue'] = !empty($t) ? $t[0] : '';
         echo json_encode($data);

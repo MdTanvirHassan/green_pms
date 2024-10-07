@@ -1306,6 +1306,7 @@ function importFullProject() {
             //Project Currency Info
             $currency_sql = "select project_currency.*,currencies.title,currencies.symbol_left from project_currency left join currencies on project_currency.currency_id=currencies.currencies_id where project_id=" . $project_id;
             $data['project_currency_info'] = $this->m_common->customeQuery($currency_sql);
+            
             foreach ($data['project_currency_info'] as $key2 => $value2) {
                 $sql = "select round(sum(equivalant_value)) as total_equivalant_value,round(sum(equivalant_amount)) as total_equivalant_amount from task_currency where currency_id=" . $value2['currency_id'] . " and project_id=" . $project_id;
                 $remain_currency_info = $this->m_common->customeQuery($sql);
@@ -1419,6 +1420,7 @@ function importFullProject() {
         $user_id = $this->session->userdata('user_id');
         $insertData = array();
         $postData = $this->input->post();
+       
         $test = $postData['currency'];
         if (!empty($postData['project_id'])) {
             $insertData['project_id'] = $postData['project_id'];
@@ -1457,6 +1459,8 @@ function importFullProject() {
         }
         $insertData['created_by'] = $user_id;
         $insertData['created'] = date('Y-m-d');
+
+
         if (!empty($parent_task_id))
             $pre_task = $this->m_common->get_row_array('task', array('project_id' => $project_id, 'parent_task_id' => $parent_task_id, 'task_name' => $postData['task_name'], 'is_delete' => 0, 'is_active' => 1), '*');
         else
@@ -1490,6 +1494,33 @@ function importFullProject() {
                     }
                 }
             }
+
+            $pre_dept = $this->m_common->get_row_array('department', array('project_id' => $project_id, 'is_active' => 1), '*');
+            $dept_id = $pre_dept[0]['dept_id'];
+
+            // Insert department task details
+        $deptTaskData = array(
+            'task_id' => $result,
+            'dept_id' => $dept_id,
+            'project_id' => $project_id,
+            'meterial_specification' => $postData['mat_specification'],
+            'unit' => $postData['unit'],
+            'qty' => $postData['qty'],
+            'rate' => $postData['rate'],
+            'total' => $postData['amount'],
+            'remark' => $postData['remarks'],
+            'report' => $postData['report'],
+            'created_by' => $user_id,
+            'created' => date('Y-m-d')
+        );
+
+        $chk_dpt_ext = $this->m_common->get_row_array('department_task', $deptTaskData, '*');
+        if (empty($chk_dpt_ext)) {
+            $this->m_common->insert_row('department_task', $deptTaskData);
+        } else {
+            $this->m_common->update_row('department_task', array('dept_task_id' => $chk_dpt_ext[0]['dept_task_id']), $deptTaskData);
+        }
+
             //Project Currency Info
             $currency_sql = "select task_currency.*,currencies.title,currencies.symbol_left from task_currency left join currencies on task_currency.currency_id=currencies.currencies_id where task_id=" . $parent_task_id;
             $data['task_currencies'] = $this->m_common->customeQuery($currency_sql);

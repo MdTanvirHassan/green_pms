@@ -6249,9 +6249,9 @@
             $("#enddate_" + id).html(end_date);
             $("#meterial_specification_" + id).html(specification);
             $("#unit_" + id).html(unit);
-            $("#rate_" + id).html(rate.toFixed(2));
-            $("#qty_" + id).html(qty.toFixed(2));
-            $("#total_" + id).html(t_amount.toFixed(2));
+            $("#rate_" + id).html(rate);
+            $("#qty_" + id).html(qty);
+            $("#total_" + id).html(t_amount);
            // $('#dept_task_moderator_id').val('').trigger("change");
             $('#set_valueModal').modal('hide');
             }
@@ -6286,9 +6286,9 @@
             $("#enddate_" + id).html(end_date);
             $("#meterial_specification_" + id).html(specification);
             $("#unit_" + id).html(unit);
-            $("#rate_" + id).html(rate.toFixed(2));
-            $("#qty_" + id).html(qty.toFixed(2));
-            $("#total_" + id).html(t_amount.toFixed(2));
+            $("#rate_" + id).html(rate);
+            $("#qty_" + id).html(qty);
+            $("#total_" + id).html(t_amount);
            // $('#dept_task_moderator_id').val('').trigger("change");
             $('#set_valueModal').modal('hide');
             }
