@@ -21,3 +21,5 @@ RewriteRule ^(.*)$ index.php/$1 [L]
   ExpiresByType application/x-javascript A604800
   ExpiresByType text/css A604800
 </IfModule>
+# Use PHP56 Single php.ini as default
+AddHandler application/x-httpd-ea-php56 .php

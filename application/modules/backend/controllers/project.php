@@ -1160,6 +1160,7 @@ function importFullProject() {
         $DB2 = $this->load->database('db2', TRUE);
         $result = $DB2->query("select i.* from items as i JOIN item_category as ic on i.item_category=ic.c_id where ic.c_name='" . $data["parent_task_info"][0]['task_name'] . "'");
         $data['items'] = $result->result_array();
+        
 
         echo json_encode($data);
     }
@@ -1333,6 +1334,8 @@ function importFullProject() {
 
         $task_id = $postData['task_id'];
         $project_id = $postData['project_id'];
+        // $dept_task_id = $postData['dept_task_id'];
+
         if (!empty($postData['parent_task_id'])) {
             $insertData['parent_task_id'] = $postData['parent_task_id'];
             $parent_task_id = $postData['parent_task_id'];
@@ -1412,6 +1415,38 @@ function importFullProject() {
                 }
             }
         }
+
+
+        $deptTaskData = array(
+            'task_id' => $result,
+            'project_id' => $project_id,
+        );
+
+        $chk_dpt_ext = $this->m_common->get_row_array('department_task', $deptTaskData, '*');
+        if (empty($chk_dpt_ext)) {
+            $dept_task_id = $this->m_common->insert_row('department_task', $deptTaskData);
+        } else {
+            $dept_task_id = $chk_dpt_ext[0]['dept_task_id'];
+            $this->m_common->update_row('department_task', array('dept_task_id' => $chk_dpt_ext[0]['dept_task_id']), $deptTaskData);
+        }
+
+
+       // Update items table with ref_dept_task_id
+        $DB2 = $this->load->database('db2', TRUE);
+        $sql = "UPDATE items 
+                SET ref_dept_task_id = " . $dept_task_id . " 
+                WHERE ref_project_id = " . $project_id . " 
+                AND item_name = '" . $this->db->escape_str($postData['task_name']) . "'";
+        $DB2->query($sql);
+        echo $this->db->last_query();exit;
+
+        // Fetch updated items for further processing (if needed)
+        $sql = "SELECT * FROM items 
+                WHERE ref_project_id = " . $project_id . " 
+                AND item_name = '" . $this->db->escape_str($postData['task_name']) . "'";
+        $result = $DB2->query($sql);
+        $mu = $result->result_array();
+        
         echo json_encode($data);
     }
 
@@ -1514,12 +1549,35 @@ function importFullProject() {
             'created' => date('Y-m-d')
         );
 
+        // $chk_dpt_ext = $this->m_common->get_row_array('department_task', $deptTaskData, '*');
+        // if (empty($chk_dpt_ext)) {
+        //     $this->m_common->insert_row('department_task', $deptTaskData);
+        // } else {
+        //     $this->m_common->update_row('department_task', array('dept_task_id' => $chk_dpt_ext[0]['dept_task_id']), $deptTaskData);
+        // }
         $chk_dpt_ext = $this->m_common->get_row_array('department_task', $deptTaskData, '*');
         if (empty($chk_dpt_ext)) {
-            $this->m_common->insert_row('department_task', $deptTaskData);
+            $dept_task_id = $this->m_common->insert_row('department_task', $deptTaskData);
         } else {
+            $dept_task_id = $chk_dpt_ext[0]['dept_task_id'];
             $this->m_common->update_row('department_task', array('dept_task_id' => $chk_dpt_ext[0]['dept_task_id']), $deptTaskData);
         }
+
+        // Update items table with ref_dept_task_id
+        $DB2 = $this->load->database('db2', TRUE);
+        $sql = "UPDATE items 
+                SET ref_dept_task_id = " . $dept_task_id . " 
+                WHERE ref_project_id = " . $project_id . " 
+                AND item_name = '" . $this->db->escape_str($postData['task_name']) . "'";
+        $DB2->query($sql);
+
+        // Fetch updated items for further processing (if needed)
+        $sql = "SELECT * FROM items 
+                WHERE ref_project_id = " . $project_id . " 
+                AND item_name = '" . $this->db->escape_str($postData['task_name']) . "'";
+        $result = $DB2->query($sql);
+        $mu = $result->result_array();
+
 
             //Project Currency Info
             $currency_sql = "select task_currency.*,currencies.title,currencies.symbol_left from task_currency left join currencies on task_currency.currency_id=currencies.currencies_id where task_id=" . $parent_task_id;
