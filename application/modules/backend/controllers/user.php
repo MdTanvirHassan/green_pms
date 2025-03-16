@@ -256,62 +256,31 @@ left join users u on u.user_id=dt.moderator where t.project_id=$project_id and t
         $specification = $this->input->post('specification');
         $start_date = date('Y-m-d', strtotime(str_replace('/', '-', $this->input->post('start_date'))));
         $end_date = date('Y-m-d', strtotime(str_replace('/', '-', $this->input->post('end_date'))));
+//        $res = $this->m_common->get_row_array('department_task', array('task_id' => $task_id, 'dept_id' => $dept_id, 'project_id' => $project_id), '*');
+//        if (!empty($res)) {
+//            $this->m_common->update_row('department_task', array('dept_task_id' => $res[0]['dept_task_id']), array('rate' => $rate,'remark'=>$remarks,'total'=>$total,'qty'=>$qty,'unit'=>$unit,'meterial_specification'=>$specification, 'start_date' => $start_date, 'end_date' => $end_date));
+//           // $user = $this->m_common->get_row_array('users', array('user_id' => $moderator), 'username');
+//            echo json_encode(array('status' => 'success'));
+//        } else {
+//            $this->m_common->insert_row('department_task', array('rate' => $rate,'remark'=>$remarks,'total'=>$total,'qty'=>$qty,'unit'=>$unit,'meterial_specification'=>$specification, 'start_date' => $start_date, 'end_date' => $end_date, 'task_id' => $task_id, 'dept_id' => $dept_id, 'project_id' => $project_id));
+//            //$user = $this->m_common->get_row_array('users', array('user_id' => $moderator), 'username');
+//            echo json_encode(array('status' => 'success'));
+//        }
 
-
+        //$tasks = $this->m_common->get_row_array('task', array('parent_task_id' => $task_id), '*');
+//        foreach ($tasks as $row) {
             $res = $this->m_common->get_row_array('department_task', array('task_id' => $task_id, 'dept_id' => $dept_id, 'project_id' => $project_id), '*');
             if (!empty($res)) {
                 $this->m_common->update_row('department_task', array('dept_task_id' => $res[0]['dept_task_id']), array('rate' => $rate,'remark'=>$remarks,'total'=>$total,'qty'=>$qty,'unit'=>$unit,'meterial_specification'=>$specification, 'start_date' => $start_date, 'end_date' => $end_date));
-
-                
-
-        $task_name_data = $this->m_common->get_row_array('task', [
-            'task_id' => $task_id,
-            'project_id' => $project_id
-        ], 'task_name');
-
-            $task_name = $task_name_data[0]['task_name'];
-
-        $DB2 = $this->load->database('db2', TRUE);
-
-            $query = $DB2->query("SELECT id FROM items WHERE item_name = ?", [$task_name]);
-            $item = $query->row_array();
-
-                $data['item_id'] = $item['id'];
-
-                $DB2->where('item_id', $data['item_id'])->update('tbl_item_stock', ['quantity' => $qty]);
-                $DB2->where('id', $item['id'])->update('items', ['opening_stock' => $qty]);
-                $DB2->where('item_id', $data['item_id'])->update('tbl_item_opening_stock', ['opening_stock' => $qty]);
-        
-
                 //$user = $this->m_common->get_row_array('users', array('user_id' => $moderator), 'username');
                 echo json_encode(array('status' => 'success'));
             } else {
                 $this->m_common->insert_row('department_task', array('rate' => $rate,'remark'=>$remarks,'total'=>$total,'qty'=>$qty,'unit'=>$unit,'meterial_specification'=>$specification, 'start_date' => $start_date, 'end_date' => $end_date, 'task_id' => $task_id, 'dept_id' => $dept_id, 'project_id' => $project_id));
-
-                $DB2 = $this->load->database('db2', TRUE);
-
-                $task_name_data = $this->m_common->get_row_array('task', [
-                    'task_id' => $task_id,
-                    'project_id' => $project_id
-                ], 'task_name');
-
-                    $task_name = $task_name_data['task_name'];
-                    print_r("task-",$task_name);exit;
-                    $query = $DB2->query("SELECT id FROM items WHERE item_name = ?", [$task_name]);
-                    $item = $query->row_array();
-
-                        $data['item_id'] = $item['id'];
-
-                        $DB2->where('item_id', $data['item_id'])->update('tbl_item_stock', ['quantity' => $qty]);
-                        $DB2->where('id', $item['id'])->update('items', ['opening_stock' => $qty]);
-                        $DB2->where('item_id', $data['item_id'])->update('tbl_item_opening_stock', ['opening_stock' => $qty]);
-             
                // $user = $this->m_common->get_row_array('users', array('user_id' => $moderator), 'username');
                 echo json_encode(array('status' => 'success'));
             }
 //        }
     }
-
     function get_enrolled_status() {
         $this->setOutputMode(NORMAL);
         $dept_id = $this->input->post('dept_id');
